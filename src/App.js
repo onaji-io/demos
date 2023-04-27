@@ -1,11 +1,42 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Outlet, Routes } from 'react-router-dom';
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Button,
+  ChakraProvider,
+  Container,
+  extendTheme,
+  Flex,
+  Input,
+  Spinner,
+} from "@chakra-ui/react";
 import Recommender from './demos/recommender/Recommender';
 import VisualSearch from './demos/visual-search/VisualSearch';
 import TraitSearch from './demos/trait-search/TraitSearch';
 
 function App() {
+  const theme = extendTheme({
+    styles: {
+      global: {
+        "html, body": {
+          color: "black",
+        },
+      },
+    },
+  });
   return (
+    <ChakraProvider theme={theme}>
+      <Container
+        minW={"8xl"}
+        paddingBottom={16}
+        paddingLeft={0}
+        paddingRight={0}
+      >
     <Router>
       <div>
         <nav>
@@ -29,6 +60,8 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </Container>
+    </ChakraProvider>
   );
 }
 

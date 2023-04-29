@@ -19,6 +19,9 @@ import Recommender from './demos/recommender/Recommender';
 import VisualSearch from './demos/visual-search/VisualSearch';
 import TraitSearch from './demos/trait-search/TraitSearch';
 
+// TODO: Set using env vars
+export const CDN_URL_BASE_PATH = "https://staging-cdn.onaji.io/";
+
 function App() {
   const theme = extendTheme({
     styles: {

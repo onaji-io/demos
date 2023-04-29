@@ -8,6 +8,7 @@ import {
   Fade,
   Flex,
   Heading,
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
@@ -19,6 +20,6 @@ import {
 
 export const NFTCard = ({nft}) => {
     return (
-        <Box width={250} height={250} marginBottom={8} background={"silver"}></Box>
+        <Image src={nft.image} width={250} height={250} marginBottom={8}></Image>
     )
 }

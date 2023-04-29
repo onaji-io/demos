@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, InfoOutlineIcon, SearchIcon } from "@chakra-ui/icons";
 import { NFTCard } from "./NFTCard";
+import { generateUUID } from "./Utils";
 
 export const NFTDisplayGrid = ({nfts}) => {
     if (!nfts || nfts.length === 0) {
@@ -25,7 +26,7 @@ export const NFTDisplayGrid = ({nfts}) => {
     }
     return (
         <Flex flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-evenly'}>
-            {nfts && nfts.map((nft) => <NFTCard key={`${nft?.contract}-${nft?.token_id}-${nft?.blockchain}`} nft={nft}></NFTCard>)}
+            {nfts && nfts.map((nft) => <NFTCard key={generateUUID(nft?.token_id, nft?.contract, nft?.blockchain)} nft={nft}></NFTCard>)}
         </Flex>
     );
 }

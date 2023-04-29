@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, InfoOutlineIcon, SearchIcon } from "@chakra-ui/icons";
 
-export const SearchBar = ({placeholderText, searchHandler}) => {
+export const SearchBar = ({placeholderText, searchHandler, children}) => {
     const [searchText, setSearchText] = useState("");
     return (
         <>
@@ -34,7 +34,7 @@ export const SearchBar = ({placeholderText, searchHandler}) => {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
-                searchHandler()
+                searchHandler(searchText)
               }
             }}
           ></Input>
@@ -45,16 +45,18 @@ export const SearchBar = ({placeholderText, searchHandler}) => {
                 cursor="pointer"
                 onClick={(e) => {
                   e.preventDefault();
-                  // TODO: Call provided search fn
-                //   setSearchText("");
+                  setSearchText("");
                 }}
               />
             }
           />
         </InputGroup>
-        <Button onClick={searchHandler} marginRight={4} style={{backgroundColor: '#E9D8FD', color: '#805AD5'}} width={32}>
+        <Button onClick={() => {
+            searchHandler(searchText)
+        }} marginRight={4} style={{backgroundColor: '#E9D8FD', color: '#805AD5'}} width={32}>
           Search
         </Button>
+        {children}
       </Flex>
     <Divider />
     </>

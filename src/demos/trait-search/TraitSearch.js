@@ -5,6 +5,9 @@ import { NFTDisplayGrid } from '../shared/NFTDisplayGrid';
 import { mock_tezos_request } from '../mocks/MockData';
 import { generateUUID } from "../shared/Utils";
 import { CDN_URL_BASE_PATH } from '../../App';
+import {
+  Divider,
+} from "@chakra-ui/react";
 
 
 const TraitSearch = () => {
@@ -28,6 +31,7 @@ const TraitSearch = () => {
     <div>
       <Header title="Trait Search" titleInfo={"Trait search is available for the 12 most popular NFT collections"}/>
       <SearchBar placeholderText={'Search for NFTs within a collection, based on their attributes. eg smiling doodles with a blue background'} searchHandler={onSearch}/>
+      <Divider />
       <NFTDisplayGrid nfts={nfts}/>
     </div>
   );

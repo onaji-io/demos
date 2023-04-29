@@ -58,7 +58,6 @@ export const SearchBar = ({placeholderText, searchHandler, children}) => {
         </Button>
         {children}
       </Flex>
-    <Divider />
     </>
     );
 }

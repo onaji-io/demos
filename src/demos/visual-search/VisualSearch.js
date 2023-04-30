@@ -52,10 +52,9 @@ const VisualSearch = () => {
   return (
     <div>
       <Header title="Visual Search" titleInfo={'Search for NFTs based on visual similarity'}/>
-      <SearchBar placeholderText={'Search for NFTs based on visuals, colors, narrartives, or any other inspiration'} searchHandler={onSearch}>
+      <SearchBar placeholderText={'Search for NFTs based on visuals, colors, narrartives, or any other inspiration'} searchHandler={onSearch} searchPrompts={searchPrompts}>
         <Button onClick={() => console.log('rando')} marginRight={4} style={{color: '#805AD5'}} width={40}>Random Search</Button>
       </SearchBar>
-      {searchPrompts?.length && searchPrompts.map((p) => <Text key={p} display={'inline'} marginRight={4}>{p}</Text>)}
       <Divider />
       <NFTDisplayGrid nfts={nfts}/>
     </div>

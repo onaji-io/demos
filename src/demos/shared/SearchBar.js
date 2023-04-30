@@ -18,8 +18,9 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, InfoOutlineIcon, SearchIcon } from "@chakra-ui/icons";
 
-export const SearchBar = ({placeholderText, searchHandler, children}) => {
+export const SearchBar = ({placeholderText, searchHandler, searchPrompts, children}) => {
     const [searchText, setSearchText] = useState("");
+
     return (
         <>
         <Flex marginTop={4} marginBottom={4}>
@@ -58,6 +59,7 @@ export const SearchBar = ({placeholderText, searchHandler, children}) => {
         </Button>
         {children}
       </Flex>
+      {searchPrompts?.length && searchPrompts.map((p) => <Text cursor={'pointer'} onClick={() => {setSearchText(p)}} key={p} display={'inline'} marginRight={4}>{p}</Text>)}
     </>
     );
 }

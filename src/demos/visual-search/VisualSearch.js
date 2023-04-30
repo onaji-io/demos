@@ -42,6 +42,22 @@ const VisualSearch = () => {
     );
   }
 
+  const onRandomSearch = async () => {
+    console.log('visual random search: ')
+    const data = await mock_tezos_request();
+    console.log(data)
+    setNfts(
+      data?.hits.map((nft) => ({
+        ...nft,
+        image: `${CDN_URL_BASE_PATH}${generateUUID(
+          nft.token_id,
+          nft.contract,
+          nft.blockchain
+        )}.jpeg`,
+      }))
+    );
+  }
+
   useEffect(() => {
     const getPrompts = async () => {
       const prompts = await mock_visual_prompts_request();
@@ -53,7 +69,7 @@ const VisualSearch = () => {
     <div>
       <Header title="Visual Search" titleInfo={'Search for NFTs based on visual similarity'}/>
       <SearchBar placeholderText={'Search for NFTs based on visuals, colors, narrartives, or any other inspiration'} searchHandler={onSearch} searchPrompts={searchPrompts}>
-        <Button onClick={() => console.log('rando')} marginRight={4} style={{color: '#805AD5'}} width={40}>Random Search</Button>
+        <Button onClick={onRandomSearch} marginRight={4} style={{color: '#805AD5'}} width={40}>Random Search</Button>
       </SearchBar>
       <Divider />
       <NFTDisplayGrid nfts={nfts}/>

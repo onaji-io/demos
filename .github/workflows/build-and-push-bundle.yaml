@@ -1,0 +1,36 @@
+name: build-and-push-bundle
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-bundle:
+    env:
+      REACT_APP_ONAJI_API_URI: ${{ vars.REACT_APP_ONAJI_API_URI }}
+      REACT_APP_ONAJI_CDN_URI: ${{ vars.REACT_APP_ONAJI_CDN_URI }}
+      REACT_APP_ALCHEMY_API_KEY: ${{ vars.REACT_APP_ALCHEMY_API_KEY }}
+      HTTPS: true
+    environment:
+      name: ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.7
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.7
+      - run: npm ci
+      - name: Build bundle
+        run: CI=false npm run build --if-present
+      - id: "auth"
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.GOOGLE_BUCKET_CREDENTIALS }}"
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v1"
+      - name: "Push built package to GCS bucket"
+        run: |
+          gsutil -m -h "Cache-Control:private, max-age=0, no-transform" rsync -R ./build/ gs://${{ vars.REACT_APP_GCS_BUCKET }}/

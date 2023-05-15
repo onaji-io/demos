@@ -26,10 +26,41 @@ import {
 const VisualSearch = () => {
   const [nfts, setNfts] = useState([])
   const [searchPrompts, setSearchPrompts] = useState([]);
+
+  const getVisualDataFromOnaji = async (query) => {
+    // TODO: Add proper API key and API once deployed
+    const url = `https://staging-api.onaji.io/v1/search/visual?text_query=${query}&blockchain_filter=ETH`
+    try {
+    const response = fetch(
+      url,
+      {credentials: 'include'}      
+      );
+    const data = await response.json()
+    } catch (error) {
+      console.log('err: ', error)
+    }
+  }
+
+  const getRandomDataFromOnaji = async () => {
+    // TODO: Add proper API key and API once deployed
+    const url = `https://staging-api.onaji.io/v1/recommend/random_curation?blockchain_filter=ETH`
+    try {
+    const response = fetch(
+      url,
+      {credentials: 'include'}      
+      );
+    const data = await response.json()
+    } catch (error) {
+      console.log('err: ', error)
+    }
+  }
+
   const onSearch = async (query) => {
-    console.log('visual search: ', query)
-    const data = await mock_tezos_request();
-    console.log(data)
+    // console.log('visual search: ', query)
+    // const data = await mock_tezos_request();
+    // console.log(data)
+
+    const data = await getVisualDataFromOnaji(query)
     setNfts(
       data?.hits.map((nft) => ({
         ...nft,
@@ -42,6 +73,7 @@ const VisualSearch = () => {
     );
   }
 
+  // TODO: Use random search function
   const onRandomSearch = async () => {
     console.log('visual random search: ')
     const data = await mock_tezos_request();

@@ -12,10 +12,24 @@ import {
 
 const TraitSearch = () => {
   const [nfts, setNfts] = useState([])
+
+  const getTraitDataFromOnaji = async (query) => {
+    // TODO: Add proper API key and API once deployed
+    const url = `https://staging-api.onaji.io/v1/search/trait?text_query=${query}&blockchain_filter=ETH`
+    try {
+    const response = fetch(
+      url,
+      {credentials: 'include'}      
+      );
+    const data = await response.json()
+    } catch (error) {
+      console.log('err: ', error)
+    }
+  }
+
   const onSearch = async (query) => {
-    console.log('trait search: ', query)
-    const data = await mock_tezos_request();
-    console.log(data)
+    const data = await getTraitDataFromOnaji(query)
+
     setNfts(
       data?.hits.map((nft) => ({
         ...nft,

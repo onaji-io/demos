@@ -17,7 +17,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export const RecommenderListItem = () => {
+export const RecommenderListItem = ({ collection }) => {
   return (
     <Flex flexDirection={"row"} alignItems="center" marginBottom={2}>
       <Box
@@ -27,7 +27,7 @@ export const RecommenderListItem = () => {
         marginRight={4}
         borderRadius={4}
       />
-      <Text>Bored Ape Yacht Club</Text>
+      <Text>{collection?.name}</Text>
     </Flex>
   );
 };

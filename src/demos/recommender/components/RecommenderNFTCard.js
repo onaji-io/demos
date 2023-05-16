@@ -19,8 +19,7 @@ import {
 } from "@chakra-ui/react";
 
 const settings = {
-  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
-  network: Network.ETH_MAINNET,
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY
 };
 
 const ALCHEMY_BASE_URL = "https://eth-mainnet.g.alchemy.com/nft/v2/";

@@ -29,7 +29,7 @@ const VisualSearch = () => {
 
   const getVisualDataFromOnaji = async (query) => {
     // TODO: Add proper API key and API once deployed
-    const url = `https://staging-api.onaji.io/v1/search/visual?text_query=${query}&blockchain_filter=ETH`
+    const url = `https://api.onaji.io/v1/search/visual?text_query=${query}&blockchain_filter=ETH`
     try {
     const response = fetch(
       url,
@@ -43,7 +43,7 @@ const VisualSearch = () => {
 
   const getRandomDataFromOnaji = async () => {
     // TODO: Add proper API key and API once deployed
-    const url = `https://staging-api.onaji.io/v1/recommend/random_curation?blockchain_filter=ETH`
+    const url = `https://api.onaji.io/v1/recommend/random_curation?blockchain_filter=ETH`
     try {
     const response = fetch(
       url,

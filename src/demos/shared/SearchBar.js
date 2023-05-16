@@ -18,12 +18,17 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, InfoOutlineIcon, SearchIcon } from "@chakra-ui/icons";
 
-export const SearchBar = ({placeholderText, searchHandler, searchPrompts, children}) => {
-    const [searchText, setSearchText] = useState("");
+export const SearchBar = ({
+  placeholderText,
+  searchHandler,
+  searchPrompts,
+  children,
+}) => {
+  const [searchText, setSearchText] = useState("");
 
-    return (
-        <>
-        <Flex marginTop={4} marginBottom={4}>
+  return (
+    <>
+      <Flex marginTop={4} marginBottom={4}>
         <InputGroup width="100%" marginRight={4}>
           <Input
             width="100%"
@@ -35,7 +40,7 @@ export const SearchBar = ({placeholderText, searchHandler, searchPrompts, childr
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
-                searchHandler(searchText)
+                searchHandler(searchText);
               }
             }}
           ></Input>
@@ -52,14 +57,32 @@ export const SearchBar = ({placeholderText, searchHandler, searchPrompts, childr
             }
           />
         </InputGroup>
-        <Button onClick={() => {
-            searchHandler(searchText)
-        }} marginRight={4} style={{backgroundColor: '#E9D8FD', color: '#805AD5'}} width={32}>
+        <Button
+          onClick={() => {
+            searchHandler(searchText);
+          }}
+          marginRight={4}
+          style={{ backgroundColor: "#E9D8FD", color: "#805AD5" }}
+          width={32}
+        >
           Search
         </Button>
         {children}
       </Flex>
-      {searchPrompts?.length && searchPrompts.map((p) => <Text cursor={'pointer'} onClick={() => {setSearchText(p)}} key={p} display={'inline'} marginRight={4}>{p}</Text>)}
+      {searchPrompts?.length &&
+        searchPrompts.map((p) => (
+          <Text
+            cursor={"pointer"}
+            onClick={() => {
+              setSearchText(p);
+            }}
+            key={p}
+            display={"inline"}
+            marginRight={4}
+          >
+            {p}
+          </Text>
+        ))}
     </>
-    );
-}
+  );
+};

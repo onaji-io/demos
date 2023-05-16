@@ -18,8 +18,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export const NFTCard = ({nft}) => {
-    return (
-        <Image src={nft.image} width={250} height={250} marginBottom={8}></Image>
-    )
-}
+export const NFTCard = ({ nft }) => {
+  return (
+    <Image src={nft.image} width={250} height={250} marginBottom={8}></Image>
+  );
+};

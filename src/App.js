@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Link, Outlet, Routes } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Outlet,
+  Routes,
+} from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogBody,
@@ -15,9 +21,9 @@ import {
   Input,
   Spinner,
 } from "@chakra-ui/react";
-import Recommender from './demos/recommender/Recommender';
-import VisualSearch from './demos/visual-search/VisualSearch';
-import TraitSearch from './demos/trait-search/TraitSearch';
+import Recommender from "./demos/recommender/Recommender";
+import VisualSearch from "./demos/visual-search/VisualSearch";
+import TraitSearch from "./demos/trait-search/TraitSearch";
 
 // TODO: Set using env vars
 export const CDN_URL_BASE_PATH = "https://cdn.onaji.io/";
@@ -25,7 +31,7 @@ export const CDN_URL_BASE_PATH = "https://cdn.onaji.io/";
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isAuthorized, setIsAuthorized] = useState(false)
+  const [isAuthorized, setIsAuthorized] = useState(false);
   // TODO: Figure out a more convenient way to do auth
   const login = async (username, password) => {
     const data = new URLSearchParams();
@@ -51,7 +57,6 @@ function App() {
     }
   };
 
-
   const theme = extendTheme({
     styles: {
       global: {
@@ -69,10 +74,11 @@ function App() {
         paddingLeft={0}
         paddingRight={0}
       >
-    <Router>
-      <div>
-        {!isAuthorized && (<div>
-        username:{" "}
+        <Router>
+          <div>
+            {!isAuthorized && (
+              <div>
+                username:{" "}
                 <Input
                   type="text"
                   value={username}
@@ -105,30 +111,30 @@ function App() {
                 >
                   Login
                 </Button>
-              
-        </div>)}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/demo/recommender">Recommender</Link>
-            </li>
-            <li>
-              <Link to="/demo/visual-search">Visual Search</Link>
-            </li>
-            <li>
-              <Link to="/demo/trait-search">Trait Search</Link>
-            </li>
-          </ul>
-        </nav>
+              </div>
+            )}
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/demo/recommender">Recommender</Link>
+                </li>
+                <li>
+                  <Link to="/demo/visual-search">Visual Search</Link>
+                </li>
+                <li>
+                  <Link to="/demo/trait-search">Trait Search</Link>
+                </li>
+              </ul>
+            </nav>
 
-        <Routes>
-          <Route path="/demo/recommender" element={<Recommender />} />
-          <Route path="/demo/visual-search" element={<VisualSearch />} />
-          <Route path="/demo/trait-search" element={<TraitSearch />} />
-        </Routes>
-      </div>
-    </Router>
-    </Container>
+            <Routes>
+              <Route path="/demo/recommender" element={<Recommender />} />
+              <Route path="/demo/visual-search" element={<VisualSearch />} />
+              <Route path="/demo/trait-search" element={<TraitSearch />} />
+            </Routes>
+          </div>
+        </Router>
+      </Container>
     </ChakraProvider>
   );
 }

@@ -22,44 +22,48 @@ const Header = ({ title, titleInfo }) => {
   const [isTooltipHover, setIsTooltipHover] = useState(false);
   return (
     <>
-    <Flex alignItems={'center'} paddingTop={'40px'} justifyContent={'space-between'} marginBottom={4}>
-      <Box marginRight={16}>
-        <Heading size="md" as="h2">
-        onaji。
-        </Heading>
-      </Box>
-      <Flex alignItems={'center'} position={'relative'}>
-        <Heading size="md" as="h2" marginRight={2}>
-        {title}
-        </Heading>
-        <InfoOutlineIcon
+      <Flex
+        alignItems={"center"}
+        paddingTop={"40px"}
+        justifyContent={"space-between"}
+        marginBottom={4}
+      >
+        <Box marginRight={16}>
+          <Heading size="md" as="h2">
+            onaji。
+          </Heading>
+        </Box>
+        <Flex alignItems={"center"} position={"relative"}>
+          <Heading size="md" as="h2" marginRight={2}>
+            {title}
+          </Heading>
+          <InfoOutlineIcon
             color="#A0A2A6"
             cursor="pointer"
             onMouseEnter={() => setIsTooltipHover(true)}
             onMouseLeave={() => setIsTooltipHover(false)}
           />
-        <Fade in={isTooltipHover} style={{ zIndex: 1 }}>
-          <Box
-            background={'white'}
-            position="absolute"
-            top="30px"
-            right="0px"
-            border="1px solid #6D5773"
-            width="278px"
-            zIndex="1"
-            opacity={isTooltipHover ? 1 : 0}
-            display={isTooltipHover ? 'block' : 'none'}
-            padding={4}
-          >
-            {titleInfo}
-          </Box>
-        </Fade>
+          <Fade in={isTooltipHover} style={{ zIndex: 1 }}>
+            <Box
+              background={"white"}
+              position="absolute"
+              top="30px"
+              right="0px"
+              border="1px solid #6D5773"
+              width="278px"
+              zIndex="1"
+              opacity={isTooltipHover ? 1 : 0}
+              display={isTooltipHover ? "block" : "none"}
+              padding={4}
+            >
+              {titleInfo}
+            </Box>
+          </Fade>
+        </Flex>
       </Flex>
-     </Flex>
-     <Divider />
+      <Divider />
     </>
   );
 };
 
 export default Header;
-

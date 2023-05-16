@@ -24,6 +24,23 @@ import { RecommenderDisplayGrid } from "./components/RecommenderDisplayGrid";
 
 const Recommender = () => {
   const [nfts, setNfts] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+  const getRecommendationsFromOnaji = async (wallet,) => {
+    // TODO: Add proper API key and API once deployed
+    const url = `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=0`;
+    try {
+      const response = fetch(url, { credentials: "include" });
+      const data = await response.json();
+    } catch (error) {
+      console.log("err: ", error);
+    }
+  };
+
+  const onSearch = async (wallet) => {
+    const data = await getRecommendationsFromOnaji(wallet);
+    console.log(data)
+  }
+
   return (
     <div>
       <Header
@@ -32,7 +49,7 @@ const Recommender = () => {
       />
       <SearchBar
         placeholderText={"Enter a wallet address or a collection address"}
-        searchHandler={() => console.log("hi")}
+        searchHandler={(wallet) => onSearch(wallet)}
       >
         <Button
           onClick={() => console.log("rando")}

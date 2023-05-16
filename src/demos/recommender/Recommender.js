@@ -36,6 +36,9 @@ const Recommender = () => {
       data = await response.json();
     } catch (error) {
       console.log("err: ", error);
+      setNfts([]);
+      setWalletContents([]);
+      setWalletSearchAddress("");
     }
     return data;
   };
@@ -67,6 +70,34 @@ const Recommender = () => {
         setWalletContents([]);
       }
     }
+  };
+
+  const onNftClick = async (contractAddress) => {
+    fetch(
+      `https://staging-api.onaji.io/v1/recommend/content_based_contract?blockchain=ETH&contract=${contractAddress}&k=10&return_wallet_content=1&exclude_owned_contracts=0`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        let ret = [];
+        for (let i = 0; i < data.scores.length; i++) {
+          ret.push({
+            address: data.contract_addresses[i],
+            score: data.scores[i],
+          });
+        }
+        setNfts(ret);
+        setWalletContents([]);
+        setWalletSearchAddress("");
+      })
+      .catch((err) => {
+        console.log(err);
+        setNfts([]);
+        setWalletContents([]);
+        setWalletSearchAddress("");
+      });
   };
 
   return (
@@ -103,7 +134,7 @@ const Recommender = () => {
           <RecommenderRecentTrades />
         </Flex>
         <Flex width="75%">
-          <RecommenderDisplayGrid nfts={nfts} />
+          <RecommenderDisplayGrid nfts={nfts} nftClickHandler={onNftClick} />
         </Flex>
       </Flex>
     </div>

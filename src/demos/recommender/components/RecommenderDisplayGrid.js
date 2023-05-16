@@ -19,7 +19,7 @@ import {
 import { RecommenderNFTCard } from "./RecommenderNFTCard";
 import { generateUUID } from "../../shared/Utils";
 
-export const RecommenderDisplayGrid = ({ nfts }) => {
+export const RecommenderDisplayGrid = ({ nfts, nftClickHandler }) => {
   if (!nfts || nfts.length === 0) {
     return <div>no search results</div>;
   }
@@ -31,7 +31,11 @@ export const RecommenderDisplayGrid = ({ nfts }) => {
     >
       {nfts &&
         nfts.map((nft) => (
-          <RecommenderNFTCard key={nft?.address} nft={nft}></RecommenderNFTCard>
+          <RecommenderNFTCard
+            key={nft?.address}
+            nft={nft}
+            nftClickHandler={nftClickHandler}
+          ></RecommenderNFTCard>
         ))}
     </Flex>
   );

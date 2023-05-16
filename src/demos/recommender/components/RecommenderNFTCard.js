@@ -19,12 +19,12 @@ import {
 } from "@chakra-ui/react";
 
 const settings = {
-  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
 };
 
 const ALCHEMY_BASE_URL = "https://eth-mainnet.g.alchemy.com/nft/v2/";
 
-export const RecommenderNFTCard = ({ nft }) => {
+export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
   // fetch metadata from alchemy.
   const [metadata, setMetadata] = useState(null);
   const [nfts, setNfts] = useState([]);
@@ -69,6 +69,8 @@ export const RecommenderNFTCard = ({ nft }) => {
               width={200}
               height={200}
               marginBottom={2}
+              onClick={() => nftClickHandler(nftData?.contract?.address)}
+              cursor={"pointer"}
             ></Image>
             <Flex flexDirection={"column"}>
               <Heading size="sm">

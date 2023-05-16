@@ -27,7 +27,7 @@ const Recommender = () => {
 
   const getRecommendationsFromOnaji = async (wallet,) => {
     // TODO: Add proper API key and API once deployed
-    const url = `https://api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=0`;
+    const url = `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=0`;
     try {
       const response = fetch(url, { credentials: "include" });
       const data = await response.json();

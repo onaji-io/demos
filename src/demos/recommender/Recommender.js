@@ -23,7 +23,9 @@ import { RecommenderRecentTrades } from "./components/RecommenderRecentTrades";
 import { RecommenderDisplayGrid } from "./components/RecommenderDisplayGrid";
 
 const Recommender = () => {
-  const [nfts, setNfts] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [nfts, setNfts] = useState([]);
+  const [walletSearchAddress, setWalletSearchAddress] = useState("");
+  const [walletContents, setWalletContents] = useState([]);
 
   const getRecommendationsFromOnaji = async (wallet,) => {
     // TODO: Add proper API key and API once deployed
@@ -39,6 +41,31 @@ const Recommender = () => {
   const onSearch = async (wallet) => {
     const data = await getRecommendationsFromOnaji(wallet);
     console.log(data)
+    let recommendations = []
+    // process the results
+    if (data.scores.length === 0) {
+      // This could be either a wallet with no history, OR the user gave us a collection address.
+      // Asssume it's the latter
+
+    } else {
+      // the api has returned results, so display the data
+      for (let i = 0; i < data.scores.length; i++) {
+        recommendations.push({
+          address: data.contract_addresses[i],
+          score: data.scores[i]
+        });
+      }
+      // at this point, recommendation data has been pulled. the next step is to fetch metadata
+      // for the recommended collections in order to display them
+      setNfts(recommendations)
+      if (data?.wallet_contents) {
+        const uniqueWallets = [...new Set(data.wallet_contents)];
+        setWalletContents(uniqueWallets);
+      } else {
+        // clear potentially stale wallet contents
+        setWalletContents([]);
+      }
+    }
   }
 
   return (

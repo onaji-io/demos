@@ -54,20 +54,22 @@ export const RecommenderNFTCard = ({ nft }) => {
   return (
     <>
       {nfts &&
-        nfts.map((nft) => (
+        nfts.map((nftData) => (
           <Flex flexDirection={"column"} marginBottom={8}>
             <Image
               src={
-                nft?.media?.[0]?.thumbnail ||
-                nft?.contractMetadata?.openSea?.imageUrl ||
-                nft?.media?.[0]?.gateway
+                nftData?.media?.[0]?.thumbnail ||
+                nftData?.contractMetadata?.openSea?.imageUrl ||
+                nftData?.media?.[0]?.gateway
               }
               width={200}
               height={200}
               marginBottom={2}
             ></Image>
             <Flex flexDirection={"column"}>
-              <Heading size="sm">{nft?.address}</Heading>
+              <Heading size="sm">
+                {collectionName != "" ? collectionName : nft?.address}
+              </Heading>
               <Text>{nft?.score}</Text>
             </Flex>
           </Flex>

@@ -8,6 +8,7 @@ import {
   Fade,
   Flex,
   Heading,
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
@@ -20,8 +21,8 @@ import {
 export const RecommenderListItem = ({ collection }) => {
   return (
     <Flex flexDirection={"row"} alignItems="center" marginBottom={2}>
-      <Box
-        background={"silver"}
+      <Image
+        src={collection?.image}
         width={50}
         height={50}
         marginRight={4}

@@ -59,26 +59,47 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
     <>
       {nfts &&
         nfts.map((nftData) => (
-          <Flex flexDirection={"column"} marginBottom={8}>
-            <Image
-              src={
-                nftData?.media?.[0]?.thumbnail ||
-                nftData?.contractMetadata?.openSea?.imageUrl ||
-                nftData?.media?.[0]?.gateway
-              }
-              width={200}
-              height={200}
-              marginBottom={2}
-              onClick={() => nftClickHandler(nftData?.contract?.address)}
-              cursor={"pointer"}
-            ></Image>
-            <Flex flexDirection={"column"}>
-              <Heading size="sm">
-                {collectionName != "" ? collectionName : nft?.address}
-              </Heading>
-              <Text>{nft?.score}</Text>
+          <Box
+            position="relative"
+            _hover={{
+              "> div": {
+                visibility: "visible",
+              },
+            }}
+          >
+            <Flex flexDirection={"column"} marginBottom={8}>
+              <Image
+                src={
+                  nftData?.media?.[0]?.thumbnail ||
+                  nftData?.contractMetadata?.openSea?.imageUrl ||
+                  nftData?.media?.[0]?.gateway
+                }
+                width={200}
+                height={200}
+                marginBottom={2}
+                onClick={() => nftClickHandler(nftData?.contract?.address)}
+                cursor={"pointer"}
+              ></Image>
+              <Flex flexDirection={"column"}>
+                <Heading size="sm">
+                  {collectionName != "" ? collectionName : nft?.address}
+                </Heading>
+                <Text>{nft?.score}</Text>
+              </Flex>
             </Flex>
-          </Flex>
+            <Box
+              position="absolute"
+              top={2}
+              left={2}
+              zIndex={1}
+              visibility="hidden"
+              backgroundColor="white"
+              borderRadius="sm"
+              p={1}
+            >
+              <Text>Similar NFTs search</Text>
+            </Box>
+          </Box>
         ))}
     </>
   );

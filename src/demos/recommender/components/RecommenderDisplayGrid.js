@@ -31,10 +31,7 @@ export const RecommenderDisplayGrid = ({ nfts }) => {
     >
       {nfts &&
         nfts.map((nft) => (
-          <RecommenderNFTCard
-            key={generateUUID(nft?.token_id, nft?.contract, nft?.blockchain)}
-            nft={nft}
-          ></RecommenderNFTCard>
+          <RecommenderNFTCard key={nft?.address} nft={nft}></RecommenderNFTCard>
         ))}
     </Flex>
   );

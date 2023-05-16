@@ -27,37 +27,38 @@ const Recommender = () => {
   const [walletSearchAddress, setWalletSearchAddress] = useState("");
   const [walletContents, setWalletContents] = useState([]);
 
-  const getRecommendationsFromOnaji = async (wallet,) => {
+  const getRecommendationsFromOnaji = async (wallet) => {
+    let data = {};
     // TODO: Add proper API key and API once deployed
     const url = `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=0`;
     try {
-      const response = fetch(url, { credentials: "include" });
-      const data = await response.json();
+      const response = await fetch(url, { credentials: "include" });
+      data = await response.json();
     } catch (error) {
       console.log("err: ", error);
     }
+    return data;
   };
 
   const onSearch = async (wallet) => {
     const data = await getRecommendationsFromOnaji(wallet);
-    console.log(data)
-    let recommendations = []
+    console.log(data);
+    let recommendations = [];
     // process the results
-    if (data.scores.length === 0) {
+    if (data?.scores?.length === 0) {
       // This could be either a wallet with no history, OR the user gave us a collection address.
       // Asssume it's the latter
-
     } else {
       // the api has returned results, so display the data
       for (let i = 0; i < data.scores.length; i++) {
         recommendations.push({
           address: data.contract_addresses[i],
-          score: data.scores[i]
+          score: data.scores[i],
         });
       }
       // at this point, recommendation data has been pulled. the next step is to fetch metadata
       // for the recommended collections in order to display them
-      setNfts(recommendations)
+      setNfts(recommendations);
       if (data?.wallet_contents) {
         const uniqueWallets = [...new Set(data.wallet_contents)];
         setWalletContents(uniqueWallets);
@@ -66,7 +67,7 @@ const Recommender = () => {
         setWalletContents([]);
       }
     }
-  }
+  };
 
   return (
     <div>

@@ -18,6 +18,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+const settings = {
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+  network: Network.ETH_MAINNET,
+};
+
 const ALCHEMY_BASE_URL = "https://eth-mainnet.g.alchemy.com/nft/v2/";
 
 export const RecommenderNFTCard = ({ nft }) => {
@@ -31,7 +36,7 @@ export const RecommenderNFTCard = ({ nft }) => {
       setLoading(true);
       try {
         const res = await fetch(
-          `${ALCHEMY_BASE_URL}nFeNA-aDnxaeO3WQwlw36tHAHHjtDlbk/getNFTsForCollection?contractAddress=${nft.address}&withMetadata=true&limit=1`
+          `${ALCHEMY_BASE_URL}${settings.apiKey}/getNFTsForCollection?contractAddress=${nft.address}&withMetadata=true&limit=1`
         );
         if (res.status === 429) {
           // Alchemy is rate limited. wait and retry

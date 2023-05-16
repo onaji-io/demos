@@ -37,7 +37,7 @@ function App() {
     const data = new URLSearchParams();
     data.append("username", username);
     data.append("password", password);
-    return fetch(`https://api.onaji.io/v1/auth/login`, {
+    return fetch(`https://staging-api.onaji.io/v1/auth/login`, {
       credentials: "include",
       method: "post",
       body: data,

@@ -52,21 +52,26 @@ export const RecommenderNFTCard = ({ nft }) => {
   }, [nft]);
 
   return (
-    <Flex flexDirection={"column"} marginBottom={8}>
-      <Image
-        src={
-          nft?.media?.[0]?.thumbnail ||
-          nft?.contractMetadata?.openSea?.imageUrl ||
-          nft?.media?.[0]?.gateway
-        }
-        width={200}
-        height={200}
-        marginBottom={2}
-      ></Image>
-      <Flex flexDirection={"column"}>
-        <Heading size="sm">{nft?.address}</Heading>
-        <Text>{nft?.score}</Text>
-      </Flex>
-    </Flex>
+    <>
+      {nfts &&
+        nfts.map((nft) => (
+          <Flex flexDirection={"column"} marginBottom={8}>
+            <Image
+              src={
+                nft?.media?.[0]?.thumbnail ||
+                nft?.contractMetadata?.openSea?.imageUrl ||
+                nft?.media?.[0]?.gateway
+              }
+              width={200}
+              height={200}
+              marginBottom={2}
+            ></Image>
+            <Flex flexDirection={"column"}>
+              <Heading size="sm">{nft?.address}</Heading>
+              <Text>{nft?.score}</Text>
+            </Flex>
+          </Flex>
+        ))}
+    </>
   );
 };

@@ -3,6 +3,9 @@ import {
   Box,
   Button,
   Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
   Checkbox,
   CheckboxGroup,
   Divider,
@@ -62,27 +65,31 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
       <SimpleGrid minChildWidth="200px" spacing={10}>
         {nfts &&
           nfts.map((nftData, index) => (
-            <Box key={index} borderRadius="lg" overflow="hidden">
-              <Image
-                src={
-                  nftData?.media?.[0]?.thumbnail ||
-                  nftData?.contractMetadata?.openSea?.imageUrl ||
-                  nftData?.media?.[0]?.gateway
-                }
-                alt={"an nft"}
-                width={200}
-                height={200}
-              />
-
-              <Box p="6">
-                <Flex direction="column" align="center">
-                  <Text mb="2">
-                    {collectionName != "" ? collectionName : nft?.address}
+            <Card width={220}>
+              <CardBody>
+                <Image
+                  src={
+                    nftData?.media?.[0]?.thumbnail ||
+                    nftData?.contractMetadata?.openSea?.imageUrl ||
+                    nftData?.media?.[0]?.gateway
+                  }
+                  alt={"an nft"}
+                  width={200}
+                  height={200}
+                />
+                <Stack mt="6" spacing="3">
+                  <Heading size="md">Living room Sofa</Heading>
+                  <Text>
+                    This sofa is perfect for modern tropical spaces, baroque
+                    inspired spaces, earthy toned spaces and for people who love
+                    a chic design with a sprinkle of vintage design.
                   </Text>
-                  <Text>{nft?.score?.toFixed(2)}</Text>
-                </Flex>
-              </Box>
-            </Box>
+                  <Text color="blue.600" fontSize="2xl">
+                    $450
+                  </Text>
+                </Stack>
+              </CardBody>
+            </Card>
           ))}
       </SimpleGrid>
       {/* {nfts &&

@@ -1,23 +1,7 @@
 import React, { useState } from "react";
 import Header from "../shared/Header";
 import { SearchBar } from "../shared/SearchBar";
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  Fade,
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Divider, Flex } from "@chakra-ui/react";
 import { RecommenderWallets } from "./components/RecommenderWallets";
 import { RecommenderRecentTrades } from "./components/RecommenderRecentTrades";
 import { RecommenderDisplayGrid } from "./components/RecommenderDisplayGrid";

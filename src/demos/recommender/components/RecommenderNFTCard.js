@@ -1,23 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  Fade,
-  Flex,
-  Heading,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
   Stack,
   Text,
   SimpleGrid,
@@ -65,8 +51,19 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
       <SimpleGrid minChildWidth="200px" spacing={10}>
         {nfts &&
           nfts.map((nftData, index) => (
-            <Card width={220}>
-              <CardBody>
+            <Card
+              width={220}
+              cursor="pointer"
+              onClick={() => nftClickHandler(nftData?.contract?.address)}
+            >
+              <CardBody
+                position="relative"
+                _hover={{
+                  "> div": {
+                    visibility: "visible",
+                  },
+                }}
+              >
                 <Image
                   src={
                     nftData?.media?.[0]?.thumbnail ||
@@ -83,55 +80,22 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                   </Text>
                   <Text>{nft?.score?.toFixed(2)}</Text>
                 </Stack>
+                <Box
+                  position="absolute"
+                  top={4}
+                  left={4}
+                  zIndex={1}
+                  visibility="hidden"
+                  backgroundColor="white"
+                  borderRadius="sm"
+                  p={1}
+                >
+                  <Text>Similar NFTs search</Text>
+                </Box>
               </CardBody>
             </Card>
           ))}
       </SimpleGrid>
-      {/* {nfts &&
-        nfts.map((nftData) => (
-          <Box
-            position="relative"
-            _hover={{
-              "> div": {
-                visibility: "visible",
-              },
-            }}
-          >
-            <Flex flexDirection={"column"} marginBottom={8}>
-              <Image
-                src={
-                  nftData?.media?.[0]?.thumbnail ||
-                  nftData?.contractMetadata?.openSea?.imageUrl ||
-                  nftData?.media?.[0]?.gateway
-                }
-                width={200}
-                height={200}
-                marginBottom={2}
-                onClick={() => nftClickHandler(nftData?.contract?.address)}
-                cursor={"pointer"}
-              ></Image>
-              <Flex flexDirection={"column"}>
-                <Heading size="sm">
-                  {collectionName != "" ? collectionName : nft?.address}
-                </Heading>
-                <Text>{nft?.score}</Text>
-              </Flex>
-            </Flex>
-            <Box
-              position="absolute"
-              top={2}
-              left={2}
-              zIndex={1}
-              visibility="hidden"
-              backgroundColor="white"
-              borderRadius="sm"
-              p={1}
-            >
-              <Text>Similar NFTs search</Text>
-            </Box>
-          </Box>
-        ))}
-    </> */}
     </>
   );
 };

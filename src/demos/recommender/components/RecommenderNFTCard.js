@@ -62,7 +62,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
       <SimpleGrid minChildWidth="200px" spacing={10}>
         {nfts &&
           nfts.map((nftData, index) => (
-            <Box key={index} borderRadius="lg" overflow="hidden" width={200} height={200}>
+            <Box key={index} borderRadius="lg" overflow="hidden">
               <Image
                 src={
                   nftData?.media?.[0]?.thumbnail ||

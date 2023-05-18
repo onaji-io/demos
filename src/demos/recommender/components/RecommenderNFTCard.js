@@ -62,7 +62,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
       <SimpleGrid minChildWidth="200px" spacing={10}>
         {nfts &&
           nfts.map((nftData, index) => (
-            <Box key={index} borderRadius="lg" overflow="hidden">
+            <Box key={index} borderRadius="lg" overflow="hidden" width={200} height={200}>
               <Image
                 src={
                   nftData?.media?.[0]?.thumbnail ||
@@ -70,6 +70,8 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                   nftData?.media?.[0]?.gateway
                 }
                 alt={"an nft"}
+                width={200}
+                height={200}
               />
 
               <Box p="6">
@@ -77,7 +79,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                   <Text mb="2">
                     {collectionName != "" ? collectionName : nft?.address}
                   </Text>
-                  <Text>{nft?.score}</Text>
+                  <Text>{nft?.score?.toFixed(2)}</Text>
                 </Flex>
               </Box>
             </Box>

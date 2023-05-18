@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
+  Card,
   Checkbox,
   CheckboxGroup,
   Divider,
@@ -16,6 +17,7 @@ import {
   Select,
   Stack,
   Text,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 const settings = {
@@ -57,7 +59,31 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
 
   return (
     <>
-      {nfts &&
+      <SimpleGrid columns={5} spacing={10}>
+        {nfts &&
+          nfts.map((nftData, index) => (
+            <Box key={index} borderRadius="lg" overflow="hidden">
+              <Image
+                src={
+                  nftData?.media?.[0]?.thumbnail ||
+                  nftData?.contractMetadata?.openSea?.imageUrl ||
+                  nftData?.media?.[0]?.gateway
+                }
+                alt={"an nft"}
+              />
+
+              <Box p="6">
+                <Flex direction="column" align="center">
+                  <Text mb="2">
+                    {collectionName != "" ? collectionName : nft?.address}
+                  </Text>
+                  <Text>{nft?.score}</Text>
+                </Flex>
+              </Box>
+            </Box>
+          ))}
+      </SimpleGrid>
+      {/* {nfts &&
         nfts.map((nftData) => (
           <Box
             position="relative"
@@ -101,6 +127,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
             </Box>
           </Box>
         ))}
+    </> */}
     </>
   );
 };

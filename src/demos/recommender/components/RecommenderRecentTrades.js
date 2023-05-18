@@ -78,11 +78,6 @@ export const RecommenderRecentTrades = ({ trades }) => {
       <Divider marginBottom={2} />
       {collectionData &&
         collectionData.map((c) => <RecommenderListItem collection={c} />)}
-      {/* <RecommenderListItem />
-      <RecommenderListItem />
-      <RecommenderListItem />
-      <RecommenderListItem />
-      <RecommenderListItem /> */}
     </Flex>
   );
 };

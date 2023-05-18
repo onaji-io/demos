@@ -59,7 +59,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
 
   return (
     <>
-      <SimpleGrid columns={5} spacing={10}>
+      <SimpleGrid minChildWidth="200px" spacing={10}>
         {nfts &&
           nfts.map((nftData, index) => (
             <Box key={index} borderRadius="lg" overflow="hidden">

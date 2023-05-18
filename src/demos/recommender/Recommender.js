@@ -129,11 +129,11 @@ const Recommender = () => {
       </SearchBar>
       <Divider marginBottom={4} />
       <Flex flexDirection={"row"}>
-        <Flex flexDirection={"column"} width="25%">
+        <Flex flexDirection={"column"} flex={1}>
           <RecommenderWallets />
           <RecommenderRecentTrades trades={walletContents} />
         </Flex>
-        <Flex width="75%">
+        <Flex flex={4}>
           <RecommenderDisplayGrid nfts={nfts} nftClickHandler={onNftClick} />
         </Flex>
       </Flex>

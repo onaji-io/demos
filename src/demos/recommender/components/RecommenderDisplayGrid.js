@@ -17,7 +17,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { RecommenderNFTCard } from "./RecommenderNFTCard";
-import { generateUUID } from "../../shared/Utils";
 
 export const RecommenderDisplayGrid = ({ nfts, nftClickHandler }) => {
   if (!nfts || nfts.length === 0) {

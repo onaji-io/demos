@@ -78,7 +78,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                   height={200}
                 />
                 <Stack mt="6" spacing="3">
-                <Text mb="2">
+                  <Text mb="2">
                     {collectionName != "" ? collectionName : nft?.address}
                   </Text>
                   <Text>{nft?.score?.toFixed(2)}</Text>

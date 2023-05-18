@@ -11,6 +11,21 @@ const Recommender = () => {
   const [walletSearchAddress, setWalletSearchAddress] = useState("");
   const [walletContents, setWalletContents] = useState([]);
 
+  const sanitizeSearchAddress = (addr) => {
+    // remove whitespace
+    const trimmed = addr.trim();
+    // address strings have length 42 (40 if you exclude the leading 0x)
+    // addresses strings which are not valid should receive the default recommendations
+    let retAddr = DEFAULT_ADDRESS;
+    // maybe they forgot the 0x
+    if (trimmed.length === 40) {
+      retAddr = "0x" + trimmed;
+    } else if (trimmed.length === 42) {
+      retAddr = trimmed;
+    }
+    return retAddr;
+  };
+
   const getRecommendationsFromOnaji = async (wallet) => {
     let data = {};
     // TODO: Add proper API key and API once deployed
@@ -55,23 +70,6 @@ const Recommender = () => {
       });
   };
 
-  const getRandomWallet = async () => {
-    fetch(
-      `https://staging-api.onaji.io/v1/recommend/random_wallet?blockchain=ETH`,
-      {
-        credentials: "include",
-      }
-    )
-      .then((r) => r.json())
-      .then((data) => {
-        setWalletSearchAddress(data?.wallet);
-        return getRecommendationsFromOnaji(data?.wallet);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const onSearch = async (wallet) => {
     const data = await getRecommendationsFromOnaji(wallet);
     console.log(data);
@@ -103,6 +101,23 @@ const Recommender = () => {
         setWalletContents([]);
       }
     }
+  };
+
+  const getRandomWallet = async () => {
+    fetch(
+      `https://staging-api.onaji.io/v1/recommend/random_wallet?blockchain=ETH`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        setWalletSearchAddress(data?.wallet);
+        return onSearch(data?.wallet);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

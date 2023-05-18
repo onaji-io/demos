@@ -55,6 +55,23 @@ const Recommender = () => {
       });
   };
 
+  const getRandomWallet = async () => {
+    fetch(
+      `https://staging-api.onaji.io/v1/recommend/random_wallet?blockchain=ETH`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        setWalletSearchAddress(data?.wallet);
+        return getRecommendationsFromOnaji(data?.wallet);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const onSearch = async (wallet) => {
     const data = await getRecommendationsFromOnaji(wallet);
     console.log(data);
@@ -99,7 +116,7 @@ const Recommender = () => {
         searchHandler={(wallet) => onSearch(wallet)}
       >
         <Button
-          onClick={() => console.log("rando")}
+          onClick={() => getRandomWallet()}
           style={{ color: "#805AD5" }}
           width={40}
         >

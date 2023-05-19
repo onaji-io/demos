@@ -11,21 +11,6 @@ const Recommender = () => {
   const [walletSearchAddress, setWalletSearchAddress] = useState("");
   const [walletContents, setWalletContents] = useState([]);
 
-  const sanitizeSearchAddress = (addr) => {
-    // remove whitespace
-    const trimmed = addr.trim();
-    // address strings have length 42 (40 if you exclude the leading 0x)
-    // addresses strings which are not valid should receive the default recommendations
-    let retAddr = DEFAULT_ADDRESS;
-    // maybe they forgot the 0x
-    if (trimmed.length === 40) {
-      retAddr = "0x" + trimmed;
-    } else if (trimmed.length === 42) {
-      retAddr = trimmed;
-    }
-    return retAddr;
-  };
-
   const getRecommendationsFromOnaji = async (wallet) => {
     let data = {};
     // TODO: Add proper API key and API once deployed

@@ -48,13 +48,14 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
 
   return (
     <>
-      <SimpleGrid minChildWidth="200px" spacing={10}>
+      <SimpleGrid>
         {nfts &&
           nfts.map((nftData, index) => (
             <Card
               width={220}
               cursor="pointer"
               onClick={() => nftClickHandler(nftData?.contract?.address)}
+              marginBottom={4}
             >
               <CardBody
                 position="relative"

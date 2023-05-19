@@ -57,7 +57,6 @@ const Recommender = () => {
 
   const onSearch = async (wallet) => {
     const data = await getRecommendationsFromOnaji(wallet);
-    console.log(data);
     let recommendations = [];
     // process the results
     if (data?.scores?.length === 0) {
@@ -78,6 +77,7 @@ const Recommender = () => {
       // at this point, recommendation data has been pulled. the next step is to fetch metadata
       // for the recommended collections in order to display them
       setNfts(recommendations);
+      setWalletSearchAddress(wallet);
       if (data?.wallet_contents) {
         const uniqueWallets = [...new Set(data.wallet_contents)];
         setWalletContents(uniqueWallets);
@@ -102,6 +102,9 @@ const Recommender = () => {
       })
       .catch((err) => {
         console.log(err);
+        setNfts([]);
+        setWalletContents([]);
+        setWalletSearchAddress("");
       });
   };
 

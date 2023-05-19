@@ -68,7 +68,11 @@ export const RecommenderRecentTrades = ({ trades }) => {
         setLoading(false);
       }
     };
-    fetchBatchMetadata(trades);
+    if (trades?.length === 0) {
+      setCollectionData([]);
+    } else {
+      fetchBatchMetadata(trades);
+    }
   }, [trades]);
   return (
     <Flex flexDirection={"column"}>

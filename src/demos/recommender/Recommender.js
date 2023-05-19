@@ -126,7 +126,7 @@ const Recommender = () => {
       <Divider marginBottom={4} />
       <Flex flexDirection={"row"}>
         <Flex flexDirection={"column"} flex={1}>
-          <RecommenderWallets />
+          <RecommenderWallets wallet={walletSearchAddress} />
           <RecommenderRecentTrades trades={walletContents} />
         </Flex>
         <Flex flex={4}>

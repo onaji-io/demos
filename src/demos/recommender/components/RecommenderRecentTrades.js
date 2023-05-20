@@ -8,7 +8,7 @@ const settings = {
 
 const ALCHEMY_BASE_URL = "https://eth-mainnet.g.alchemy.com/nft/v2/";
 
-export const RecommenderRecentTrades = ({ trades }) => {
+export const RecommenderRecentTrades = ({ trades, onTradeClick }) => {
   const [collectionData, setCollectionData] = useState([]);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export const RecommenderRecentTrades = ({ trades }) => {
         const collectionInfo = data.map((d) => ({
           name: d?.contractMetadata?.name,
           image: d?.media?.[0]?.thumbnail,
+          address: d?.contract?.address,
         }));
         setCollectionData(collectionInfo);
       } catch (err) {
@@ -61,7 +62,12 @@ export const RecommenderRecentTrades = ({ trades }) => {
       </Heading>
       <Divider marginBottom={2} />
       {collectionData &&
-        collectionData.map((c) => <RecommenderListItem collection={c} />)}
+        collectionData.map((c) => (
+          <RecommenderListItem
+            collection={c}
+            onClick={onTradeClick(c?.address)}
+          />
+        ))}
     </Flex>
   );
 };

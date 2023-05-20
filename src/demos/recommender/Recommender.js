@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import Header from "../shared/Header";
 import { SearchBar } from "../shared/SearchBar";
-import { Button, Divider, Flex } from "@chakra-ui/react";
+import { Button, Divider, Flex, Select, Stack } from "@chakra-ui/react";
 import { RecommenderWallets } from "./components/RecommenderWallets";
 import { RecommenderRecentTrades } from "./components/RecommenderRecentTrades";
 import { RecommenderDisplayGrid } from "./components/RecommenderDisplayGrid";
+import { SelectedWalletsByCategory } from "./components/SelectedWalletsByCategory";
 
 const Recommender = () => {
   const [nfts, setNfts] = useState([]);
   const [walletSearchAddress, setWalletSearchAddress] = useState("");
   const [walletContents, setWalletContents] = useState([]);
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const options = [
+    { value: "gaming", label: "Gaming" },
+    { value: "anime", label: "Anime" },
+    { value: "milady", label: "Milady-Related" },
+    { value: "pfp", label: "PFP Collectors" },
+    { value: "genart", label: "Gen Art" },
+    { value: "notable", label: "Notable Wallets" },
+  ];
 
   const getRecommendationsFromOnaji = async (wallet) => {
     let data = {};
@@ -128,6 +139,31 @@ const Recommender = () => {
           Random Wallet
         </Button>
       </SearchBar>
+
+      <Flex marginTop={8} alignItems={"baseline"}>
+        <span style={{ marginLeft: "16px", marginRight: "16px" }}>
+          or try a test wallet
+        </span>
+        <Stack spacing={3} width={"25%"} marginRight={4}>
+          <Select
+            marginBottom={4}
+            size="md"
+            defaultValue={options[0].value}
+            onChange={(e) => setSelectedValue(e.target.value)}
+          >
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+        </Stack>
+        <SelectedWalletsByCategory
+          category={selectedValue}
+          onClickFn={(w) => setWalletSearchAddress(w)}
+        />
+      </Flex>
+
       <Divider marginBottom={4} />
       <Flex flexDirection={"row"}>
         <Flex flexDirection={"column"} flex={1}>

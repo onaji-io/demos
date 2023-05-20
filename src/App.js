@@ -3,23 +3,15 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Outlet,
+  Navigate,
   Routes,
 } from "react-router-dom";
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
   Button,
   ChakraProvider,
   Container,
   extendTheme,
-  Flex,
   Input,
-  Spinner,
 } from "@chakra-ui/react";
 import Recommender from "./demos/recommender/Recommender";
 import VisualSearch from "./demos/visual-search/VisualSearch";
@@ -113,7 +105,8 @@ function App() {
                 </Button>
               </div>
             )}
-            <nav>
+            {/* activate once visual and trait search demos are ready */}
+            {/* <nav>
               <ul>
                 <li>
                   <Link to="/demo/recommender">Recommender</Link>
@@ -125,12 +118,14 @@ function App() {
                   <Link to="/demo/trait-search">Trait Search</Link>
                 </li>
               </ul>
-            </nav>
+            </nav> */}
 
             <Routes>
               <Route path="/demo/recommender" element={<Recommender />} />
               <Route path="/demo/visual-search" element={<VisualSearch />} />
               <Route path="/demo/trait-search" element={<TraitSearch />} />
+              {/* Automatically route to the recommender demo for now */}
+              <Route path="/" element={<Navigate to="/demo/recommender" />} />
             </Routes>
           </div>
         </Router>

@@ -65,7 +65,7 @@ export const RecommenderRecentTrades = ({ trades, onTradeClick }) => {
         collectionData.map((c) => (
           <RecommenderListItem
             collection={c}
-            onClick={onTradeClick(c?.address)}
+            onClick={() => onTradeClick(c?.address)}
           />
         ))}
     </Flex>

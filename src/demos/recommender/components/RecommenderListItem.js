@@ -1,22 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  Fade,
-  Flex,
-  Heading,
-  Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 
 export const RecommenderListItem = ({ collection }) => {
   return (
@@ -27,6 +10,7 @@ export const RecommenderListItem = ({ collection }) => {
         height={50}
         marginRight={4}
         borderRadius={4}
+        alt="nft image"
       />
       <Text>{collection?.name}</Text>
     </Flex>

@@ -1,21 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  Fade,
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Divider, Flex, Heading } from "@chakra-ui/react";
 import { RecommenderListItem } from "./RecommenderListItem";
 
 const settings = {
@@ -26,7 +10,6 @@ const ALCHEMY_BASE_URL = "https://eth-mainnet.g.alchemy.com/nft/v2/";
 
 export const RecommenderRecentTrades = ({ trades }) => {
   const [collectionData, setCollectionData] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchBatchMetadata = async (collections) => {
@@ -38,7 +21,6 @@ export const RecommenderRecentTrades = ({ trades }) => {
         refreshCache: false,
       };
 
-      setLoading(true);
       try {
         const res = await fetch(
           `${ALCHEMY_BASE_URL}${settings.apiKey}/getNFTMetadataBatch`,
@@ -64,8 +46,6 @@ export const RecommenderRecentTrades = ({ trades }) => {
         setCollectionData(collectionInfo);
       } catch (err) {
         console.log(err);
-      } finally {
-        setLoading(false);
       }
     };
     if (trades?.length === 0) {

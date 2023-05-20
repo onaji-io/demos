@@ -134,7 +134,7 @@ const Recommender = () => {
           <RecommenderWallets wallet={walletSearchAddress} />
           <RecommenderRecentTrades
             trades={walletContents}
-            onTradeClick={(address) => onNftClick(address)}
+            onTradeClick={onNftClick}
           />
         </Flex>
         <Flex flex={4}>

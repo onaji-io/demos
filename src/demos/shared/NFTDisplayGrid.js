@@ -1,22 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  Fade,
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import { CloseIcon, InfoOutlineIcon, SearchIcon } from "@chakra-ui/icons";
+import React from "react";
+import { Flex } from "@chakra-ui/react";
 import { NFTCard } from "./NFTCard";
 import { generateUUID } from "./Utils";
 

@@ -29,6 +29,7 @@ const Recommender = () => {
 
   const onNftClick = async (contractAddress) => {
     setWalletContents([]);
+    setWalletSearchAddress("");
     fetch(
       `https://staging-api.onaji.io/v1/recommend/content_based_contract?blockchain=ETH&contract=${contractAddress}&k=10&return_wallet_content=1&exclude_owned_contracts=1`,
       {

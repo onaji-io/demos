@@ -3,7 +3,12 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 
 export const RecommenderListItem = ({ collection, onItemClick }) => {
   return (
-    <Flex flexDirection={"row"} alignItems="center" marginBottom={2}>
+    <Flex
+      flexDirection={"row"}
+      alignItems="center"
+      marginBottom={2}
+      cursor={"pointer"}
+    >
       <Image
         src={collection?.image}
         width={50}

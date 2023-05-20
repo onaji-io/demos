@@ -23,8 +23,13 @@ export const SearchBar = ({
   searchHandler,
   searchPrompts,
   children,
+  parentSearchValue,
 }) => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState(parentSearchValue);
+
+  useEffect(() => {
+    setSearchText(parentSearchValue);
+  }, [parentSearchValue]);
 
   return (
     <>

@@ -120,6 +120,7 @@ const Recommender = () => {
       <SearchBar
         placeholderText={"Enter a wallet address or a collection address"}
         searchHandler={(wallet) => onSearch(wallet)}
+        parentSearchValue={walletSearchAddress}
       >
         <Button
           onClick={() => getRandomWallet()}

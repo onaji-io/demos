@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Grid } from "@chakra-ui/react";
 import { RecommenderNFTCard } from "./RecommenderNFTCard";
 
 export const RecommenderDisplayGrid = ({ nfts, nftClickHandler }) => {
@@ -7,10 +7,10 @@ export const RecommenderDisplayGrid = ({ nfts, nftClickHandler }) => {
     return <div>no search results</div>;
   }
   return (
-    <Flex
-      flexDirection={"row"}
-      flexWrap={"wrap"}
-      justifyContent={"space-evenly"}
+    <Grid
+      templateColumns={["repeat(1, 1fr)", "repeat(5, 1fr)"]}
+      justifyItems={["center", "start"]}
+      gap={4}
     >
       {nfts &&
         nfts.map((nft) => (
@@ -20,6 +20,6 @@ export const RecommenderDisplayGrid = ({ nfts, nftClickHandler }) => {
             nftClickHandler={nftClickHandler}
           ></RecommenderNFTCard>
         ))}
-    </Flex>
+    </Grid>
   );
 };

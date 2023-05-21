@@ -165,7 +165,7 @@ const Recommender = () => {
       </Flex>
 
       <Divider marginBottom={4} />
-      <Flex flexDirection={"row"}>
+      <Flex flexDirection={["column", "row"]}>
         <Flex flexDirection={"column"} flex={1}>
           <RecommenderWallets wallet={walletSearchAddress} />
           <RecommenderRecentTrades
@@ -173,7 +173,7 @@ const Recommender = () => {
             onTradeClick={onNftClick}
           />
         </Flex>
-        <Flex flex={4}>
+        <Flex flex={4} justifyItems={["center", "start"]}>
           <RecommenderDisplayGrid nfts={nfts} nftClickHandler={onNftClick} />
         </Flex>
       </Flex>

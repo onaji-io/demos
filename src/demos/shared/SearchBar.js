@@ -24,8 +24,13 @@ export const SearchBar = ({
 
   return (
     <>
-      <Flex marginTop={4} marginBottom={4}>
-        <InputGroup width="100%" marginRight={4}>
+      <Flex
+        marginTop={4}
+        marginBottom={4}
+        flexDirection={["column", "row"]}
+        alignItems={["start", "center"]}
+      >
+        <InputGroup width="100%" marginBottom={[4, 0]} marginRight={[0, 4]}>
           <Input
             width="100%"
             value={searchText}

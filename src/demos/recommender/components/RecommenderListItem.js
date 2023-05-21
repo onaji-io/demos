@@ -2,6 +2,10 @@ import React from "react";
 import { Flex, Image, Text } from "@chakra-ui/react";
 
 export const RecommenderListItem = ({ collection, onItemClick }) => {
+  if (collection == null || (!collection?.name && !collection?.address)) {
+    return null;
+  }
+
   return (
     <Flex
       flexDirection={"row"}
@@ -18,7 +22,7 @@ export const RecommenderListItem = ({ collection, onItemClick }) => {
         alt="nft image"
         // onClick={() => onItemClick(collection?.address)}
       />
-      <Text>{collection?.name}</Text>
+      <Text>{collection?.name ?? collection?.address}</Text>
     </Flex>
   );
 };

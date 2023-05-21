@@ -60,7 +60,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Container
-        minW={"8xl"}
+        maxW={["container.sm", "container.md", "container.lg", "container.xl"]}
         paddingBottom={16}
         paddingLeft={0}
         paddingRight={0}

@@ -59,11 +59,11 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
             >
               <CardBody
                 position="relative"
-                _hover={{
-                  "> div": {
-                    visibility: "visible",
-                  },
-                }}
+                // _hover={{
+                //   "> div": {
+                //     visibility: "visible",
+                //   },
+                // }}
               >
                 <Image
                   src={

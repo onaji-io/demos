@@ -53,8 +53,8 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
           nfts.map((nftData, index) => (
             <Card
               width={220}
-              cursor="pointer"
-              onClick={() => nftClickHandler(nftData?.contract?.address)}
+              // cursor="pointer"
+              // onClick={() => nftClickHandler(nftData?.contract?.address)}
               marginBottom={4}
             >
               <CardBody

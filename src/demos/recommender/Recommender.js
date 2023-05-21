@@ -78,7 +78,7 @@ const Recommender = () => {
       setNfts([]);
       setWalletContents([]);
       setWalletSearchAddress("");
-      return onNftClick(wallet);
+      // return onNftClick(wallet);
     } else {
       // the api has returned results, so display the data
       for (let i = 0; i < data.scores.length; i++) {

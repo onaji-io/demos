@@ -40,7 +40,7 @@ function App() {
     }
     const res = await login(username, password);
 
-    if (res.status !== 200) {
+    if (res.status !== 204) {
       setIsAuthorized(false);
     } else {
       console.log("success");

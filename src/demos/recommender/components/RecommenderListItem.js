@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Image, Text } from "@chakra-ui/react";
 
 export const RecommenderListItem = ({ collection, onItemClick }) => {
-  if (collection == null || (!collection?.name || !collection?.address)) {
+  if (collection == null || !collection?.name || !collection?.address) {
     return null;
   }
 

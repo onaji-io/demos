@@ -74,10 +74,19 @@ const Recommender = () => {
     // process the results
     if (data?.scores?.length === 0) {
       // This could be either a wallet with no history, OR the user gave us a collection address.
-      // Asssume it's the latter
+      //
       setNfts([]);
-      setWalletContents([]);
-      setWalletSearchAddress("");
+
+      // although there are no recommendations, it may be possible to display recent purchaes
+      if (data?.wallet_contents?.length !== 0) {
+        const uniqueWallets = [...new Set(data.wallet_contents)];
+        setWalletContents(uniqueWallets);
+        setWalletSearchAddress(wallet);
+      } else {
+        setWalletContents([]);
+        setWalletSearchAddress("");
+      }
+
       // return onNftClick(wallet);
     } else {
       // the api has returned results, so display the data

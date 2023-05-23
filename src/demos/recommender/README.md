@@ -9,21 +9,23 @@ The frontend React code in this repository is given as an example to showcase ho
 Please note that this is only a limited demo of the Onaji recommender. For more information, [please contact us](https://onaji.io/).
 
 ## API Endpoints
+
 For a full list of Onaji's endpoints, please see the [official documentation](https://api.onaji.io/docs).
 
 This demo uses the [/v1/recommend/contracts endpoint](https://api.onaji.io/docs#/recommender/contract_recommender_endpoint_v1_recommend_contracts_get) to return a list of recommended collections based on a user wallet.
 
 The structure of the response is as follows:
-| field                | type     | explanation                                                                       |
+| field | type | explanation |
 |----------------------|----------|-----------------------------------------------------------------------------------|
-| contract_addresses   | string[] | A list of addresses of recommended collections                                    |
-| runtime_milliseconds | number   | The time required to generate collection recommendations                          |
-| scores               | number[] | A list containing the score for each recommended collection                       |
-| wallet_contents      | string[] | A list containing collection addresses of recent NFT transactions for this wallet |
+| contract_addresses | string[] | A list of addresses of recommended collections |
+| runtime_milliseconds | number | The time required to generate collection recommendations |
+| scores | number[] | A list containing the score for each recommended collection |
+| wallet_contents | string[] | A list containing collection addresses of recent NFT transactions for this wallet |
 
 Please note that the `runtime_milliseconds` field is the time required for Onaji's systems to generate a list of recommendations for a wallet. It does not include the time required for the frontend to fetch metadata and images to display information about that collection.
 
 For example, searching for wallet `0xf4d78fb51ff3ed3458995db8789ee7ac4e575d08` yieled:
+
 ```
 {
   "contract_addresses": [
@@ -66,4 +68,5 @@ For example, searching for wallet `0xf4d78fb51ff3ed3458995db8789ee7ac4e575d08` y
   ]
 }
 ```
-Please note that the response data and recommendations for a particular wallet will change over time, depending on the activity of that wallet. 
+
+Please note that the response data and recommendations for a particular wallet will change over time, depending on the activity of that wallet.

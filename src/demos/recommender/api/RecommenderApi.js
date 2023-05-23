@@ -8,3 +8,15 @@ export const getRecommendationsFromOnaji = async (wallet) => {
     throw error;
   }
 };
+
+export const getRandomWalletFromOnaji = async () => {
+  const url = `https://staging-api.onaji.io/v1/recommend/random_wallet?blockchain=ETH`;
+
+  try {
+    const response = await fetch(url, { credentials: "include" });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

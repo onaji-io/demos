@@ -6,7 +6,10 @@ import { RecommenderWallets } from "./components/RecommenderWallets";
 import { RecommenderRecentTrades } from "./components/RecommenderRecentTrades";
 import { RecommenderDisplayGrid } from "./components/RecommenderDisplayGrid";
 import { SelectedWalletsByCategory } from "./components/SelectedWalletsByCategory";
-import { getRecommendationsFromOnaji } from "./api/RecommenderApi";
+import {
+  getRandomWalletFromOnaji,
+  getRecommendationsFromOnaji,
+} from "./api/RecommenderApi";
 
 const Recommender = () => {
   const [nfts, setNfts] = useState([]);
@@ -22,21 +25,6 @@ const Recommender = () => {
     { value: "genart", label: "Gen Art" },
     { value: "notable", label: "Notable Wallets" },
   ];
-
-  // const getRecommendationsFromOnaji = async (wallet) => {
-  //   let data = {};
-  //   const url = `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=1`;
-  //   try {
-  //     const response = await fetch(url, { credentials: "include" });
-  //     data = await response.json();
-  //   } catch (error) {
-  //     console.log("err: ", error);
-  //     setNfts([]);
-  //     setWalletContents([]);
-  //     setWalletSearchAddress("");
-  //   }
-  //   return data;
-  // };
 
   const onNftClick = async (contractAddress) => {
     setWalletContents([]);
@@ -119,22 +107,16 @@ const Recommender = () => {
   };
 
   const getRandomWallet = async () => {
-    fetch(
-      `https://staging-api.onaji.io/v1/recommend/random_wallet?blockchain=ETH`,
-      {
-        credentials: "include",
-      }
-    )
-      .then((r) => r.json())
-      .then((data) => {
-        setWalletSearchAddress(data?.wallet);
-        return onSearch(data?.wallet);
-      })
-      .catch((err) => {
-        setNfts([]);
-        setWalletContents([]);
-        setWalletSearchAddress("");
-      });
+    try {
+      const data = await getRandomWalletFromOnaji();
+      setWalletSearchAddress(data?.wallet);
+      return onSearch(data?.wallet);
+    } catch (error) {
+      // If the api has returned an error, clear all data
+      setNfts([]);
+      setWalletContents([]);
+      setWalletSearchAddress("");
+    }
   };
 
   return (

@@ -6,6 +6,7 @@ import { RecommenderWallets } from "./components/RecommenderWallets";
 import { RecommenderRecentTrades } from "./components/RecommenderRecentTrades";
 import { RecommenderDisplayGrid } from "./components/RecommenderDisplayGrid";
 import { SelectedWalletsByCategory } from "./components/SelectedWalletsByCategory";
+import { getRecommendationsFromOnaji } from "./api/RecommenderApi";
 
 const Recommender = () => {
   const [nfts, setNfts] = useState([]);
@@ -22,20 +23,20 @@ const Recommender = () => {
     { value: "notable", label: "Notable Wallets" },
   ];
 
-  const getRecommendationsFromOnaji = async (wallet) => {
-    let data = {};
-    const url = `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=1`;
-    try {
-      const response = await fetch(url, { credentials: "include" });
-      data = await response.json();
-    } catch (error) {
-      console.log("err: ", error);
-      setNfts([]);
-      setWalletContents([]);
-      setWalletSearchAddress("");
-    }
-    return data;
-  };
+  // const getRecommendationsFromOnaji = async (wallet) => {
+  //   let data = {};
+  //   const url = `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=1`;
+  //   try {
+  //     const response = await fetch(url, { credentials: "include" });
+  //     data = await response.json();
+  //   } catch (error) {
+  //     console.log("err: ", error);
+  //     setNfts([]);
+  //     setWalletContents([]);
+  //     setWalletSearchAddress("");
+  //   }
+  //   return data;
+  // };
 
   const onNftClick = async (contractAddress) => {
     setWalletContents([]);
@@ -69,44 +70,51 @@ const Recommender = () => {
   };
 
   const onSearch = async (wallet) => {
-    const data = await getRecommendationsFromOnaji(wallet);
-    let recommendations = [];
-    // process the results
-    if (data?.scores?.length === 0) {
-      // This could be either a wallet with no history, OR the user gave us a collection address.
-      //
-      setNfts([]);
+    try {
+      const data = await getRecommendationsFromOnaji(wallet);
+      let recommendations = [];
+      // process the results
+      if (data?.scores?.length === 0) {
+        // This could be either a wallet with no history, OR the user gave us a collection address.
+        //
+        setNfts([]);
 
-      // although there are no recommendations, it may be possible to display recent purchaes
-      if (data?.wallet_contents?.length !== 0) {
-        const uniqueWallets = [...new Set(data.wallet_contents)];
-        setWalletContents(uniqueWallets);
+        // although there are no recommendations, it may be possible to display recent purchaes
+        if (data?.wallet_contents?.length !== 0) {
+          const uniqueWallets = [...new Set(data.wallet_contents)];
+          setWalletContents(uniqueWallets);
+          setWalletSearchAddress(wallet);
+        } else {
+          setWalletContents([]);
+          setWalletSearchAddress("");
+        }
+
+        // return onNftClick(wallet);
+      } else {
+        // the api has returned results, so display the data
+        for (let i = 0; i < data.scores.length; i++) {
+          recommendations.push({
+            address: data.contract_addresses[i],
+            score: data.scores[i],
+          });
+        }
+        // at this point, recommendation data has been pulled. the next step is to fetch metadata
+        // for the recommended collections in order to display them
+        setNfts(recommendations);
         setWalletSearchAddress(wallet);
-      } else {
-        setWalletContents([]);
-        setWalletSearchAddress("");
+        if (data?.wallet_contents) {
+          const uniqueWallets = [...new Set(data.wallet_contents)];
+          setWalletContents(uniqueWallets);
+        } else {
+          // clear potentially stale wallet contents
+          setWalletContents([]);
+        }
       }
-
-      // return onNftClick(wallet);
-    } else {
-      // the api has returned results, so display the data
-      for (let i = 0; i < data.scores.length; i++) {
-        recommendations.push({
-          address: data.contract_addresses[i],
-          score: data.scores[i],
-        });
-      }
-      // at this point, recommendation data has been pulled. the next step is to fetch metadata
-      // for the recommended collections in order to display them
-      setNfts(recommendations);
-      setWalletSearchAddress(wallet);
-      if (data?.wallet_contents) {
-        const uniqueWallets = [...new Set(data.wallet_contents)];
-        setWalletContents(uniqueWallets);
-      } else {
-        // clear potentially stale wallet contents
-        setWalletContents([]);
-      }
+    } catch (error) {
+      // If the api has returned an error, clear all data
+      setNfts([]);
+      setWalletContents([]);
+      setWalletSearchAddress("");
     }
   };
 

@@ -20,3 +20,17 @@ export const getRandomWalletFromOnaji = async () => {
     throw error;
   }
 };
+
+export const getCollectionRecommendationsFromOnaji = async (
+  collectionAddress
+) => {
+  const url = `https://staging-api.onaji.io/v1/recommend/content_based_contract?blockchain=ETH&contract=${collectionAddress}&k=10&return_wallet_content=1&exclude_owned_contracts=1`;
+
+  try {
+    const response = await fetch(url, { credentials: "include" });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

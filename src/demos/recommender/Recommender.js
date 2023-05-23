@@ -27,32 +27,7 @@ const Recommender = () => {
     { value: "notable", label: "Notable Wallets" },
   ];
 
-  // clicking on an NFT will show recommendations based on that collection.
-  // this feature will be enabled in future
-  const onNftClick = async (contractAddress) => {
-    setWalletContents([]);
-    setWalletSearchAddress("");
-
-    try {
-      const data = await getCollectionRecommendationsFromOnaji(contractAddress);
-      let ret = [];
-      for (let i = 0; i < data.scores.length; i++) {
-        ret.push({
-          address: data.contract_addresses[i],
-          score: data.scores[i],
-        });
-      }
-
-      setWalletContents([]);
-      setNfts(ret);
-      setWalletSearchAddress("");
-    } catch (error) {
-      setNfts([]);
-      setWalletContents([]);
-      setWalletSearchAddress("");
-    }
-  };
-
+  // This function will fetch recommendations from Onaji for a provided wallet.
   const onSearch = async (wallet) => {
     try {
       const data = await getRecommendationsFromOnaji(wallet);
@@ -103,13 +78,40 @@ const Recommender = () => {
     }
   };
 
+  // This function will fetch a random wallet from Onaji, which can then be passed along to the
+  // search method to receive recommendations.
   const getRandomWallet = async () => {
     try {
       const data = await getRandomWalletFromOnaji();
       setWalletSearchAddress(data?.wallet);
       return onSearch(data?.wallet);
     } catch (error) {
-      // If the api has returned an error, clear all data
+      setNfts([]);
+      setWalletContents([]);
+      setWalletSearchAddress("");
+    }
+  };
+
+   // clicking on an NFT will show recommendations based on that collection.
+  // NOTE: This feature is currently unsupported, and will be enabled in the future.
+  const onNftClick = async (contractAddress) => {
+    setWalletContents([]);
+    setWalletSearchAddress("");
+
+    try {
+      const data = await getCollectionRecommendationsFromOnaji(contractAddress);
+      let ret = [];
+      for (let i = 0; i < data.scores.length; i++) {
+        ret.push({
+          address: data.contract_addresses[i],
+          score: data.scores[i],
+        });
+      }
+
+      setWalletContents([]);
+      setNfts(ret);
+      setWalletSearchAddress("");
+    } catch (error) {
       setNfts([]);
       setWalletContents([]);
       setWalletSearchAddress("");

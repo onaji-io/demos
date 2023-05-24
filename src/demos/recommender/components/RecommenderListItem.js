@@ -12,6 +12,7 @@ export const RecommenderListItem = ({ collection, onItemClick }) => {
       alignItems="center"
       marginBottom={2}
       cursor={"pointer"}
+      onClick={() => onItemClick(collection?.address)}
     >
       <Image
         src={collection?.image}
@@ -20,7 +21,6 @@ export const RecommenderListItem = ({ collection, onItemClick }) => {
         marginRight={4}
         borderRadius={4}
         alt="nft image"
-        onClick={() => onItemClick(collection?.address)}
       />
       <Text>{collection?.name ?? collection?.address}</Text>
     </Flex>

@@ -32,7 +32,7 @@ export const RecommenderDisplayGrid = ({ nfts, nftClickHandler }) => {
             background={"white"}
             position="absolute"
             top="30px"
-            right="0px"
+            left="0px"
             border="1px solid #6D5773"
             width="278px"
             zIndex="1"

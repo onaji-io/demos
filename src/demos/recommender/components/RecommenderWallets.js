@@ -18,16 +18,18 @@ export const RecommenderWallets = ({ wallet }) => {
         Wallet
       </Heading>
       <Divider marginBottom={2} />
-      <Flex flexDirection={"row"} alignItems="center" marginBottom={2}>
-        <Text fontSize={"xs"}>{truncateAddress(wallet)}</Text>
-        <CopyIcon
-          marginLeft={2}
-          cursor={"pointer"}
-          onClick={() => {
-            navigator?.clipboard?.writeText(wallet);
-          }}
-        />
-      </Flex>
+      {wallet && (
+        <Flex flexDirection={"row"} alignItems="center" marginBottom={2}>
+          <Text fontSize={"xs"}>{truncateAddress(wallet)}</Text>
+          <CopyIcon
+            marginLeft={2}
+            cursor={"pointer"}
+            onClick={() => {
+              navigator?.clipboard?.writeText(wallet);
+            }}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 };

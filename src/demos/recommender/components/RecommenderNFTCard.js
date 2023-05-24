@@ -52,7 +52,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
         {nfts &&
           nfts.map((nftData, index) => (
             <Card
-              width={220}
+              width={200}
               cursor="pointer"
               onClick={() => nftClickHandler(nftData?.contract?.address)}
               marginBottom={4}
@@ -72,8 +72,8 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                     nftData?.media?.[0]?.gateway
                   }
                   alt={"an nft"}
-                  width={200}
-                  height={200}
+                  width={173}
+                  height={173}
                 />
                 <Stack mt="6" spacing="3">
                   <Text mb="2">

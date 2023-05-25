@@ -24,7 +24,7 @@ test("getRecommendationsFromOnaji fetches data from the api", async () => {
   const data = await getRecommendationsFromOnaji(wallet);
 
   expect(fetch).toHaveBeenCalledWith(
-    `https://staging-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=1`,
+    `https://demo-api.onaji.io/v1/recommend/contracts?blockchain=ETH&wallet_address=${wallet}&k=10&recently_popular_weight=0&return_wallet_content=1&exclude_owned_contracts=1`,
     { credentials: "include" }
   );
 

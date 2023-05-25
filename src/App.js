@@ -67,43 +67,6 @@ function App() {
       >
         <Router>
           <div>
-            {!isAuthorized && (
-              <div>
-                username:{" "}
-                <Input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      loginSubmitHandler();
-                    }
-                  }}
-                />
-                password:{" "}
-                <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      loginSubmitHandler();
-                    }
-                  }}
-                />
-                <Button
-                  bgColor="#1B1919"
-                  color="white"
-                  border="1px solid #4B4B4B"
-                  ml={3}
-                  onClick={() => loginSubmitHandler()}
-                >
-                  Login
-                </Button>
-              </div>
-            )}
             {/* activate once visual and trait search demos are ready */}
             {/* <nav>
               <ul>
@@ -120,11 +83,11 @@ function App() {
             </nav> */}
 
             <Routes>
-              <Route path="/demo/recommender" element={<Recommender />} />
-              <Route path="/demo/visual-search" element={<VisualSearch />} />
-              <Route path="/demo/trait-search" element={<TraitSearch />} />
+              <Route path="/recommender" element={<Recommender />} />
+              <Route path="/visual-search" element={<VisualSearch />} />
+              <Route path="/trait-search" element={<TraitSearch />} />
               {/* Automatically route to the recommender demo for now */}
-              <Route path="/" element={<Navigate to="/demo/recommender" />} />
+              <Route path="/" element={<Navigate to="/recommender" />} />
             </Routes>
           </div>
         </Router>

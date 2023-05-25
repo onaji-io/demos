@@ -27,6 +27,7 @@ const Recommender = () => {
     { value: "notable", label: "Notable Wallets" },
   ];
 
+  // TODO: This feature will be activated in future
   // clicking on an NFT will show recommendations based on that collection.
   const onNftClick = async (contractAddress) => {
     setWalletContents([]);

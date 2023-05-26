@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  Fade,
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Divider, Fade, Flex, Heading } from "@chakra-ui/react";
 import { CloseIcon, InfoOutlineIcon, SearchIcon } from "@chakra-ui/icons";
 
-const Header = ({ title, titleInfo }) => {
+const Header = ({
+  title,
+  titleInfo,
+  connectFn,
+  isConnecting,
+  connectedAccounts,
+}) => {
   const [isTooltipHover, setIsTooltipHover] = useState(false);
   return (
     <>
@@ -34,6 +24,18 @@ const Header = ({ title, titleInfo }) => {
           </Heading>
         </Box>
         <Flex alignItems={"center"} position={"relative"}>
+          <Button
+            onClick={connectFn}
+            disabled={isConnecting || connectedAccounts?.length > 0}
+            marginRight={2}
+            style={{ color: "#805AD5" }}
+          >
+            {isConnecting
+              ? "Connecting..."
+              : connectedAccounts?.length > 0
+              ? "Connected"
+              : "Connect Wallet"}
+          </Button>
           <Heading size="md" as="h2" marginRight={2}>
             {title}
           </Heading>

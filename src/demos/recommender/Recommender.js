@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Web3 from "web3";
 import Header from "../shared/Header";
 import { SearchBar } from "../shared/SearchBar";
 import { Button, Divider, Flex, Select, Stack } from "@chakra-ui/react";
@@ -18,6 +19,8 @@ const Recommender = () => {
   const [walletContents, setWalletContents] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const [fallbackMessage, setFallbackMessage] = useState("");
+  const [accounts, setAccounts] = useState([]);
+  const [isConnecting, setIsConnecting] = useState(false);
 
   const options = [
     { value: "gaming", label: "Gaming" },
@@ -27,6 +30,38 @@ const Recommender = () => {
     { value: "genart", label: "Gen Art" },
     { value: "notable", label: "Notable Wallets" },
   ];
+
+  const connectWallet = async () => {
+    setIsConnecting(true);
+    if (window?.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      try {
+        const _accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setAccounts(_accounts);
+        console.log(_accounts);
+        if (_accounts.length > 0) {
+          setWalletSearchAddress(_accounts[0]);
+        }
+      } catch (error) {
+        console.error("User denied account access");
+      } finally {
+        setIsConnecting(false);
+      }
+
+      window.ethereum.on("accountsChanged", (_accounts) => {
+        setAccounts(_accounts);
+        console.log(_accounts);
+        if (_accounts.length > 0) {
+          setWalletSearchAddress(_accounts[0]);
+        }
+      });
+    } else {
+      console.log("Please install Metamask");
+      setIsConnecting(false);
+    }
+  };
 
   // TODO: This feature will be activated in future
   // clicking on an NFT will show recommendations based on that collection.
@@ -134,6 +169,9 @@ const Recommender = () => {
       <Header
         title="Recommendations"
         titleInfo={"Search for collections related to a wallet or a collection"}
+        connectFn={connectWallet}
+        isConnecting={isConnecting}
+        connectedAccounts={accounts}
       />
       <SearchBar
         placeholderText={"Enter a wallet address or a collection address"}

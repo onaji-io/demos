@@ -25,7 +25,6 @@ export const SelectedWalletsByCategory = ({ category, onClickFn }) => {
     { wallet: "0x3f8cD3cc58391E704A2A0fab2482B8116Cb9D670", name: "Luca Netz" },
     { wallet: "0x000000000002e33d9a86567c6dfe6d92f6777d1e", name: "" },
     { wallet: "0x0000000000ad737a527c2757136ae83bb40b925e", name: "" },
-    { wallet: "0x0000000000e43e0c383403dd18066ff60d5003b3", name: "" },
     { wallet: "0x0000000000f6b28110192be56ce7a4a9c75c79eb", name: "" },
     { wallet: "0x000000002e4254f818f89051778f423219de1626", name: "" },
   ];
@@ -35,14 +34,11 @@ export const SelectedWalletsByCategory = ({ category, onClickFn }) => {
     { wallet: "0x6924686B3DCD04Ae8ef91a3fEccC262d020F519D", name: "" },
   ];
   const ANIME_WALLETS = [
-    { wallet: "0x7db839bcF7C81dc0452e8FB491f887a4A77EA940", name: "" },
     { wallet: "0xB46134d5c0db2eF833402B3845B5A37B9174Fb4F", name: "" },
     { wallet: "0x15F5843AB2D339601Cf4eb84E6E4FBa00b21105E", name: "" },
   ];
   const PFP_COLLECTORS_WALLETS = [
-    { wallet: "0xA9Cba6Fa4C40e5f885DB97A94528B9225A700b1c", name: "" },
     { wallet: "0x80aC8B6F4CACEa6129F5cF1365904F056b4E29EA", name: "" },
-    { wallet: "0x1A409f336FcD7F97dB04a84Cc521309766321595", name: "" },
     { wallet: "0x6112083d4BB12dBF64e4850842685aaEfBeAcb10", name: "" },
   ];
   const YUGA_WALLETS = [
@@ -59,7 +55,6 @@ export const SelectedWalletsByCategory = ({ category, onClickFn }) => {
   ];
   const MILADY_WALLETS = [
     { wallet: "0xC9b5db189631ED9bB35eb795826d90717b43B56A", name: "" },
-    { wallet: "0x1DCa9aD259FAc5941292eEc5be6c45782b91B3FB", name: "" },
     { wallet: "0x2a2df89605714be2fe153Ab68ED247CeE67a870f", name: "" },
     { wallet: "0x2e6b28fda29e5328acd9cadaf6b5900daf5cb576", name: "" },
   ];

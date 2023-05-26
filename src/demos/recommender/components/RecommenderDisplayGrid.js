@@ -54,35 +54,24 @@ export const RecommenderDisplayGrid = ({
         </Fade>
       </Flex>
       <Divider marginBottom={2} />
-      <Grid
-        templateColumns={["repeat(1, 1fr)", "repeat(5, 1fr)"]}
-        justifyItems={["center", "start"]}
-        gap={4}
-      >
-        {nfts && nfts?.length > 0 ? (
-          nfts.map((nft) => (
-            <RecommenderNFTCard
-              key={nft?.address}
-              nft={nft}
-              nftClickHandler={nftClickHandler}
-            ></RecommenderNFTCard>
-          ))
-        ) : (
-          <div>{fallbackMessage}</div>
-        )}
 
-        {/* {nfts && nfts?.length &&
-          nfts.map((nft) => (
+      {nfts && nfts?.length > 0 ? (
+        <Grid
+          templateColumns={["repeat(1, 1fr)", "repeat(5, 1fr)"]}
+          justifyItems={["center", "start"]}
+          gap={4}
+        >
+          {nfts.map((nft) => (
             <RecommenderNFTCard
               key={nft?.address}
               nft={nft}
               nftClickHandler={nftClickHandler}
             ></RecommenderNFTCard>
           ))}
-        {!nfts && !nfts.length && (
-          <div>no recommendation results for this address yet</div>
-        )} */}
-      </Grid>
+        </Grid>
+      ) : (
+        <div>{fallbackMessage}</div>
+      )}
     </Flex>
   );
 };

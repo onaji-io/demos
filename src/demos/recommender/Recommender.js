@@ -13,6 +13,8 @@ import {
   getRecommendationsFromOnaji,
 } from "./api/RecommenderApi";
 
+const DEFAULT_WALLET = "0x0D24d79751236cBb715185aAb4eA401f2287f9CA";
+
 const Recommender = () => {
   const [nfts, setNfts] = useState([]);
   const [walletSearchAddress, setWalletSearchAddress] = useState("");
@@ -165,6 +167,14 @@ const Recommender = () => {
       setFallbackMessage("A network error has occurred. Please try again.");
     }
   };
+
+  // on initial render, go ahead and search the default address
+  useEffect(() => {
+    const initialSearch = async () => {
+      await onSearch(DEFAULT_WALLET);
+    };
+    initialSearch();
+  }, []);
 
   return (
     <div>

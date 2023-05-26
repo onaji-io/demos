@@ -116,17 +116,6 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                 //   },
                 // }}
               >
-                {/* <Image
-                  src={
-                    nftData?.media?.[0]?.thumbnail ||
-                    nftData?.contractMetadata?.openSea?.imageUrl ||
-                    nftData?.media?.[0]?.gateway ||
-                    FallbackImage
-                  }
-                  alt={"an nft"}
-                  width={173}
-                  height={173}
-                /> */}
                 <MediaDisplay
                   url={
                     nftData?.media?.[0]?.thumbnail ||

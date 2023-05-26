@@ -17,6 +17,7 @@ const Recommender = () => {
   const [walletSearchAddress, setWalletSearchAddress] = useState("");
   const [walletContents, setWalletContents] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [fallbackMessage, setFallbackMessage] = useState("");
 
   const options = [
     { value: "gaming", label: "Gaming" },
@@ -61,19 +62,27 @@ const Recommender = () => {
       if (data?.scores?.length === 0) {
         setNfts([]);
 
+        // TODO: In these situations, a message needs to be shown to the user.
+        setFallbackMessage(
+          "Hang on! This wallet isn't included in this demo. Reach out to us for access to the complete version or feel free to try other wallets and collections. Keep the fun alive! 🚀"
+        );
+
         // although there are no recommendations (data.scores is empty), it may be possible to display recent purchaes for this wallet
         if (data?.wallet_contents?.length !== 0) {
           // don't display multiple transactions for the same collection
           const uniqueWallets = [...new Set(data.wallet_contents)];
           setWalletContents(uniqueWallets);
-          setWalletSearchAddress(wallet);
+          // setWalletSearchAddress(wallet);
         } else {
           setWalletContents([]);
-          setWalletSearchAddress("");
+          // setWalletSearchAddress("");
         }
+        // always display the wallet address for reference
+        setWalletSearchAddress(wallet);
 
+        // TODO: This feature will be enabled in future
         // no results can also mean that a collection address was provided, instead of a wallet.
-        return onNftClick(wallet);
+        // return onNftClick(wallet);
       } else {
         // the api has returned results, so display the data
         for (let i = 0; i < data.scores.length; i++) {
@@ -101,6 +110,7 @@ const Recommender = () => {
       setNfts([]);
       setWalletContents([]);
       setWalletSearchAddress("");
+      setFallbackMessage("A network error has occurred. Please try again.");
     }
   };
 
@@ -115,6 +125,7 @@ const Recommender = () => {
       setNfts([]);
       setWalletContents([]);
       setWalletSearchAddress("");
+      setFallbackMessage("A network error has occurred. Please try again.");
     }
   };
 
@@ -176,7 +187,11 @@ const Recommender = () => {
           />
         </Flex>
         <Flex flex={4} justifyItems={["center", "start"]}>
-          <RecommenderDisplayGrid nfts={nfts} nftClickHandler={onNftClick} />
+          <RecommenderDisplayGrid
+            nfts={nfts}
+            nftClickHandler={onNftClick}
+            fallbackMessage={fallbackMessage}
+          />
         </Flex>
       </Flex>
     </div>

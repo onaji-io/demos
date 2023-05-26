@@ -43,6 +43,7 @@ const Recommender = () => {
         console.log(_accounts);
         if (_accounts.length > 0) {
           setWalletSearchAddress(_accounts[0]);
+          onSearch(_accounts[0]);
         }
       } catch (error) {
         console.error("User denied account access");
@@ -55,6 +56,7 @@ const Recommender = () => {
         console.log(_accounts);
         if (_accounts.length > 0) {
           setWalletSearchAddress(_accounts[0]);
+          onSearch(_accounts[0]);
         }
       });
     } else {

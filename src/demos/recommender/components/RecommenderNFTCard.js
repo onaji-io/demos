@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  AspectRatio,
   Box,
   Card,
   CardBody,
@@ -15,6 +16,55 @@ const settings = {
 };
 
 const ALCHEMY_BASE_URL = "https://eth-mainnet.g.alchemy.com/nft/v2/";
+
+const MediaDisplay = ({ url }) => {
+  const [mediaType, setMediaType] = useState(null);
+
+  useEffect(() => {
+    if (!url) {
+      setMediaType(null);
+      return;
+    }
+
+    fetch(url, { method: "HEAD" })
+      .then((response) => {
+        const contentType = response.headers.get("content-type");
+
+        if (contentType.startsWith("image")) {
+          setMediaType("image");
+        } else if (contentType.startsWith("video")) {
+          setMediaType("video");
+        } else {
+          setMediaType(null);
+        }
+      })
+      .catch(() => {
+        setMediaType(null);
+      });
+  }, [url]);
+
+  if (mediaType === "image") {
+    return (
+      <Image
+        src={url}
+        fallbackSrc={FallbackImage}
+        alt={"an nft"}
+        width={173}
+        height={173}
+      />
+    );
+  } else if (mediaType === "video") {
+    return (
+      <AspectRatio ratio={16 / 9}>
+        <Box as="video" src={url} autoPlay loop muted />
+      </AspectRatio>
+    );
+  } else {
+    return (
+      <Image src={FallbackImage} alt={"an nft"} width={173} height={173} />
+    );
+  }
+};
 
 export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
   // fetch metadata from alchemy.
@@ -66,7 +116,7 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                 //   },
                 // }}
               >
-                <Image
+                {/* <Image
                   src={
                     nftData?.media?.[0]?.thumbnail ||
                     nftData?.contractMetadata?.openSea?.imageUrl ||
@@ -76,6 +126,13 @@ export const RecommenderNFTCard = ({ nft, nftClickHandler }) => {
                   alt={"an nft"}
                   width={173}
                   height={173}
+                /> */}
+                <MediaDisplay
+                  url={
+                    nftData?.media?.[0]?.thumbnail ||
+                    nftData?.contractMetadata?.openSea?.imageUrl ||
+                    nftData?.media?.[0]?.gateway
+                  }
                 />
                 <Stack mt="6" spacing="3">
                   <Text mb="2">

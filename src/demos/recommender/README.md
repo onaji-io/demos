@@ -1,5 +1,8 @@
 ## Onaji Recommender
 
+live demo:
+https://demos.onaji.io/recommender
+
 This demo shows an example of how to integrate with Onaji's recommender api endpoints. Simply paste a wallet into the search bar to recieve a list of recommnded collections, or try a random wallet.
 
 https://github.com/onaji-io/demos/assets/8813282/ed33fcb5-de31-4687-ba73-77d1619fd7ac

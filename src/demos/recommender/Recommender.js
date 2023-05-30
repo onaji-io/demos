@@ -44,8 +44,9 @@ const Recommender = () => {
         setAccounts(_accounts);
         console.log(_accounts);
         if (_accounts.length > 0) {
+          const isLoggedIn = 1;
           setWalletSearchAddress(_accounts[0]);
-          onSearch(_accounts[0]);
+          onSearch(_accounts[0], isLoggedIn);
         }
       } catch (error) {
         console.error("User denied account access");
@@ -57,8 +58,9 @@ const Recommender = () => {
         setAccounts(_accounts);
         console.log(_accounts);
         if (_accounts.length > 0) {
+          const isLoggedIn = 1;
           setWalletSearchAddress(_accounts[0]);
-          onSearch(_accounts[0]);
+          onSearch(_accounts[0], isLoggedIn);
         }
       });
     } else {
@@ -94,9 +96,9 @@ const Recommender = () => {
   };
 
   // This function will fetch recommendations from Onaji for a provided wallet.
-  const onSearch = async (wallet) => {
+  const onSearch = async (wallet, isLoggedIn = 0) => {
     try {
-      const data = await getRecommendationsFromOnaji(wallet);
+      const data = await getRecommendationsFromOnaji(wallet, isLoggedIn);
       let recommendations = [];
       if (data?.scores?.length === 0) {
         setNfts([]);

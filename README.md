@@ -3,8 +3,8 @@ A suite of FE pages for demonstrating some of the functionality of Onaji's searc
 
 ### Recommender ([link](https://github.com/onaji-io/demos/tree/main/src/demos/recommender))
 `/demo/recommender`
-[online demo](https://demos.onaji.io/demo/recommender)
-### Trait Search (coming soon)
+[online demo](https://demos.onaji.io/recommender)
+### AI Trait Search (coming soon)
 `/demo/trait-search`
 ### Visual Search (coming soon)
 `/demo/visual-search`

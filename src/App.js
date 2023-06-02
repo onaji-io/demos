@@ -20,32 +20,6 @@ import TraitSearch from "./demos/trait-search/TraitSearch";
 export const CDN_URL_BASE_PATH = "https://cdn.onaji.io/";
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const login = async (username, password) => {
-    const data = new URLSearchParams();
-    data.append("username", username);
-    data.append("password", password);
-    return fetch(`https://staging-api.onaji.io/v1/auth/login`, {
-      credentials: "include",
-      method: "post",
-      body: data,
-    });
-  };
-  const loginSubmitHandler = async () => {
-    if (!username || !password) {
-      return;
-    }
-    const res = await login(username, password);
-
-    if (res.status !== 204) {
-      setIsAuthorized(false);
-    } else {
-      console.log("success");
-      setIsAuthorized(true);
-    }
-  };
   const theme = extendTheme({
     styles: {
       global: {
@@ -65,43 +39,6 @@ function App() {
       >
         <Router>
           <div>
-            {!isAuthorized && (
-              <div>
-                username:{" "}
-                <Input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      loginSubmitHandler();
-                    }
-                  }}
-                />
-                password:{" "}
-                <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      loginSubmitHandler();
-                    }
-                  }}
-                />
-                <Button
-                  bgColor="#1B1919"
-                  color="white"
-                  border="1px solid #4B4B4B"
-                  ml={3}
-                  onClick={() => loginSubmitHandler()}
-                >
-                  Login
-                </Button>
-              </div>
-            )}
             {/* activate once visual and trait search demos are ready */}
             {/* <nav>
               <ul>

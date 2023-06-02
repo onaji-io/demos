@@ -3,7 +3,6 @@ import Header from "../shared/Header";
 import { SearchBar } from "../shared/SearchBar";
 import { NFTDisplayGrid } from "../shared/NFTDisplayGrid";
 import { generateUUID } from "../shared/Utils";
-import { CDN_URL_BASE_PATH } from "../../App";
 import {
   Box,
   Button,
@@ -13,6 +12,8 @@ import {
   Select,
   Stack,
 } from "@chakra-ui/react";
+
+const CDN_URL_BASE_PATH = "https://staging-cdn.onaji.io/";
 
 const TraitSearch = () => {
   const [username, setUsername] = useState("");

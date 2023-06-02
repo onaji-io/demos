@@ -5,9 +5,7 @@ https://demos.onaji.io/recommender
 
 This demo shows an example of how to integrate with Onaji's recommender api endpoints. Simply paste a wallet into the search bar to recieve a list of recommnded collections, or try a random wallet. You can also connect your wallet if you have an extension such as Metamask.
 
-
 https://github.com/onaji-io/demos/assets/8813282/b9d9b4dc-935f-4124-9322-ca7762c4f914
-
 
 The frontend React code in this repository is given as an example to showcase how an application could interact with Onaji's API endpoints.
 

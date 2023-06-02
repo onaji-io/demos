@@ -60,7 +60,7 @@ const TraitSearch = () => {
     { value: "0x1a92f7381b9f03921564a437210bb9396471050c", label: "Cool Cats" },
     { value: "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e", label: "Doodles" },
     { value: "0x79fcdef22feed20eddacbb2587640e45491b757f", label: "mfers" },
-    { value: "0x60e4d786628fea6478f785a6d7e704777c86a7c6", label: "MAYC" },
+    // { value: "0x60e4d786628fea6478f785a6d7e704777c86a7c6", label: "MAYC" },
     { value: "0xed5af388653567af2f388e6224dc7c4b3241c544", label: "Azuki" },
     { value: "0x1cb1a5e65610aeff2551a50f76a87a7d3fb649c6", label: "Cryptoadz" },
   ];

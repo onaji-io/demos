@@ -8,7 +8,9 @@ import { Box, Divider, Flex, Select, Stack } from "@chakra-ui/react";
 
 const TraitSearch = () => {
   const [nfts, setNfts] = useState([]);
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState(
+    "0xbc4CA0eda7647a8ab7c2061c2e118a18a936f13d"
+  );
 
   const options = [
     { value: "0xbc4CA0eda7647a8ab7c2061c2e118a18a936f13d", label: "BAYC" },
@@ -29,11 +31,11 @@ const TraitSearch = () => {
   ];
 
   const getTraitDataFromOnaji = async (query) => {
-    // TODO: Add proper API key and API once deployed
-    const url = `https://api.onaji.io/v1/search/trait?text_query=${query}&blockchain_filter=ETH`;
+    const url = `https://demo-api.onaji.io/v1/search/trait?text_query=${query}&blockchain_filter=ETH&contract_filter=${selectedValue}`;
     try {
       const response = fetch(url, { credentials: "include" });
       const data = await response.json();
+      return data;
     } catch (error) {
       console.log("err: ", error);
     }
@@ -58,7 +60,7 @@ const TraitSearch = () => {
       <Header
         title="Trait Search"
         titleInfo={
-          "Trait search is available for the 12 most popular NFT collections"
+          "Trait search is available for the most popular NFT collections"
         }
       />
       <Flex alignItems="baseline">

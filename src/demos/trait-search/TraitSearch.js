@@ -130,6 +130,7 @@ const TraitSearch = () => {
         </div>
       )}
       <Header
+        showConnect={false}
         title="Trait Search"
         titleInfo={
           "Trait search is available for the most popular NFT collections"

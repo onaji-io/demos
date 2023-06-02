@@ -186,6 +186,7 @@ const Recommender = () => {
         connectFn={connectWallet}
         isConnecting={isConnecting}
         connectedAccounts={accounts}
+        showConnect={true}
       />
       <SearchBar
         placeholderText={"Enter a wallet address or a collection address"}

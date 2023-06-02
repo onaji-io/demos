@@ -8,6 +8,7 @@ const Header = ({
   connectFn,
   isConnecting,
   connectedAccounts,
+  showConnect,
 }) => {
   const [isTooltipHover, setIsTooltipHover] = useState(false);
   return (
@@ -24,18 +25,20 @@ const Header = ({
           </Heading>
         </Box>
         <Flex alignItems={"center"} position={"relative"}>
-          <Button
-            onClick={connectFn}
-            disabled={isConnecting || connectedAccounts?.length > 0}
-            marginRight={2}
-            style={{ color: "#805AD5" }}
-          >
-            {isConnecting
-              ? "Connecting..."
-              : connectedAccounts?.length > 0
-              ? "Connected"
-              : "Connect Wallet"}
-          </Button>
+          {showConnect && (
+            <Button
+              onClick={connectFn}
+              disabled={isConnecting || connectedAccounts?.length > 0}
+              marginRight={2}
+              style={{ color: "#805AD5" }}
+            >
+              {isConnecting
+                ? "Connecting..."
+                : connectedAccounts?.length > 0
+                ? "Connected"
+                : "Connect Wallet"}
+            </Button>
+          )}
           <Heading size="md" as="h2" marginRight={2}>
             {title}
           </Heading>

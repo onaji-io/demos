@@ -12,6 +12,7 @@ export const NFTDisplayGrid = ({ nfts }) => {
       flexDirection={"row"}
       flexWrap={"wrap"}
       justifyContent={"space-evenly"}
+      marginTop={8}
     >
       {nfts &&
         nfts.map((nft) => (

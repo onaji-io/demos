@@ -131,9 +131,9 @@ const TraitSearch = () => {
       )}
       <Header
         showConnect={false}
-        title="Trait Search"
+        title="AI Trait Search"
         titleInfo={
-          "Trait search is available for the most popular NFT collections"
+          "AI Trait search is available for the most popular NFT collections"
         }
       />
       <Flex alignItems="baseline">

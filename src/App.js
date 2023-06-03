@@ -57,7 +57,7 @@ function App() {
             <Routes>
               <Route path="/recommender" element={<Recommender />} />
               <Route path="/visual-search" element={<VisualSearch />} />
-              <Route path="/trait-search" element={<TraitSearch />} />
+              <Route path="/ai-trait-search" element={<TraitSearch />} />
               {/* Automatically route to the recommender demo for now */}
               <Route path="/" element={<Navigate to="/recommender" />} />
               <Route

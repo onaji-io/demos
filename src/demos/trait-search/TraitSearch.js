@@ -66,7 +66,7 @@ const TraitSearch = () => {
   ];
 
   const getTraitDataFromOnaji = async (query) => {
-    const url = `https://staging-api.onaji.io/v1/search/trait?text_query=${query}&blockchain_filter=ETH&contract_filter=${selectedValue}`;
+    const url = `https://demo-api.onaji.io/v1/search/trait?text_query=${query}&blockchain_filter=ETH&contract_filter=${selectedValue}`;
     try {
       const response = await fetch(url, { credentials: "include" });
       const data = await response.json();

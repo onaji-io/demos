@@ -1,10 +1,10 @@
 # demos
 A suite of FE pages for demonstrating some of the functionality of Onaji's search and recommendation APIs.
 
-### Recommender ([link](https://github.com/onaji-io/demos/tree/main/src/demos/recommender))
+### Recommender ([link](https://demos.onaji.io/recommender))
 `/demo/recommender`
 [online demo](https://demos.onaji.io/recommender)
-### AI Trait Search (coming soon)
+### AI Trait Search ([link](https://demos.onaji.io/ai-trait-search))
 `/demo/trait-search`
 ### Visual Search (coming soon)
 `/demo/visual-search`

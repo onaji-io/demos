@@ -16,32 +16,6 @@ import {
 const CDN_URL_BASE_PATH = "https://staging-cdn.onaji.io/";
 
 const TraitSearch = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const login = async (username, password) => {
-    const data = new URLSearchParams();
-    data.append("username", username);
-    data.append("password", password);
-    return fetch(`https://staging-api.onaji.io/v1/auth/login`, {
-      credentials: "include",
-      method: "post",
-      body: data,
-    });
-  };
-  const loginSubmitHandler = async () => {
-    if (!username || !password) {
-      return;
-    }
-    const res = await login(username, password);
-
-    if (res.status !== 204) {
-      setIsAuthorized(false);
-    } else {
-      console.log("success");
-      setIsAuthorized(true);
-    }
-  };
   const [nfts, setNfts] = useState([]);
   const [selectedValue, setSelectedValue] = useState(
     "0xbc4CA0eda7647a8ab7c2061c2e118a18a936f13d"
@@ -92,43 +66,6 @@ const TraitSearch = () => {
   };
   return (
     <div>
-      {!isAuthorized && (
-        <div>
-          username:{" "}
-          <Input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                loginSubmitHandler();
-              }
-            }}
-          />
-          password:{" "}
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                loginSubmitHandler();
-              }
-            }}
-          />
-          <Button
-            bgColor="#1B1919"
-            color="white"
-            border="1px solid #4B4B4B"
-            ml={3}
-            onClick={() => loginSubmitHandler()}
-          >
-            Login
-          </Button>
-        </div>
-      )}
       <Header
         showConnect={false}
         title="AI Trait Search"

@@ -5,7 +5,7 @@ A suite of FE pages for demonstrating some of the functionality of Onaji's searc
 `/demo/recommender`
 [online demo](https://demos.onaji.io/recommender)
 ### AI Trait Search ([link](https://demos.onaji.io/ai-trait-search))
-`/demo/trait-search`
+`/demo/ai-trait-search`
 ### Visual Search (coming soon)
 `/demo/visual-search`
 

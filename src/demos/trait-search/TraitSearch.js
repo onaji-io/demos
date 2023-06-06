@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../shared/Header";
 import { SearchBar } from "../shared/SearchBar";
 import { NFTDisplayGrid } from "../shared/NFTDisplayGrid";
@@ -64,6 +64,14 @@ const TraitSearch = () => {
       }))
     );
   };
+
+  // when the page loads, populate with default BAYC results
+  useEffect(() => {
+    const initialRequest = async () => {
+      await onSearch();
+    };
+    initialRequest();
+  }, []);
   return (
     <div>
       <Header
